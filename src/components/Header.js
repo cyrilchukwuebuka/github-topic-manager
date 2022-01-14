@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth, githubProvider } from '../services/firebaseApp';
 import { addUser, deleteUser } from '../features/githubUser/githubUserSlice';
+import { Box, Flex, HStack, Icon, Image, Text, VStack } from '@chakra-ui/react';
+import { VscGithub } from 'react-icons/vsc';
+import { BiGitBranch } from 'react-icons/bi';
 
 const Header = () => {
 
@@ -47,19 +50,45 @@ const Header = () => {
     }
 
     return (
-        <Nav>
-            <div>
-                <img src="/images/GitHub-Logo.svg" alt="" />
-                <div>
-                    <div>TOPIC</div>
-                    <div>MANAGER</div>
-                </div>
-            </div>
-            <div>How it works</div>
-            <div>LOGO: for forking the repo</div>
-            <div>AVATAR: user avatar</div>
-
-        </Nav>
+        <Flex px='4%' py={6} h='60px' w='full' bg='gray.50' align="center" justify="space-between">
+            <Box alignItems='flex-start'>
+                <HStack>
+                    {/* <Box w={50} h={50}>
+                        <Image
+                            borderRadius='full'
+                            boxSize='100%'
+                            objectFit='cover'
+                            src="/images/GitHub-Logo.svg" alt="Logo" />
+                    </Box> */}
+                    <Icon as={VscGithub} w={45} h={45} />
+                    <VStack>
+                        <Text>TOPIC</Text>
+                        <Text>MANAGER</Text>
+                    </VStack>
+                </HStack>
+            </Box>
+            <Flex h='full' w='30%' align="center" justify="space-between">
+                <Flex w='70%' align="center" justify="space-between">
+                    <Text
+                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                        fontWeight="extrabold"
+                    >
+                        How it works
+                    </Text>
+                    <Box>
+                        <Text>Login</Text>
+                    </Box>
+                    <Icon as={BiGitBranch} w={25} h={25} />
+                </Flex>
+                <Box w={35} h={35}>
+                    <Image 
+                        borderRadius='full'
+                        boxSize='100%'
+                        objectFit='cover'
+                        src="/images/User-Profile-PNG-Image.png" alt="Logo" />
+                </Box>
+            </Flex>
+        </Flex>
     )
 }
 

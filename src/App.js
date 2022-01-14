@@ -11,6 +11,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import PageNotFound from './components/PageNotFound';
 import RepoDetail from './components/RepoDetail';
+import { Container } from '@chakra-ui/react';
 
 
 function App() {
@@ -27,7 +28,7 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
+    <Container maxW='container.xl' padding={0}>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -37,7 +38,7 @@ function App() {
           </Route>
         </Routes>
       </Router>
-    </div>
+    </Container>
   );
 }
 
@@ -45,15 +46,12 @@ export default App;
 
 const Layout = () => {
   return (
-    <div className='app__layout'>
+    <>
       <Header />
       <main className='app__container'>
-        {/* App
-        <button onClick={firebaseSignInWithPopup}>login</button>
-        <button onClick={firebaseSignOut}>signout</button> */}
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   );
 }
