@@ -1,20 +1,25 @@
-import React from 'react'
-import styled from 'styled-components'
+import React, { useEffect, useState } from 'react'
 import { GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import { auth, githubProvider } from '../services/firebaseApp';
-import { addUser, deleteUser } from '../features/githubUser/githubUserSlice';
+import { addUser, deleteUser, getUserData } from '../features/githubUser/githubUserSlice';
 import { Box, Flex, HStack, Icon, Image, Text, VStack } from '@chakra-ui/react';
 import { VscGithub } from 'react-icons/vsc';
 import { BiGitBranch } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
+import { HamburgerIcon } from '@chakra-ui/icons';
 
 const Header = () => {
 
-    let dispatch, userData;
+    let dispatch = useDispatch();
+    let userData = useSelector(getUserData);
+    // let [avatar, setAvatar] = useState(userData.user?.photoURL)
+    let avatar = userData.user?.photoURL;
+    console.log(avatar)
+
 
     const firebaseSignInWithPopup = () => {
         signInWithPopup(auth, githubProvider)
             .then((result) => {
-                // console.log(result)
                 // This gives you a GitHub Access Token. You can use it to access the GitHub API.
                 const credential = GithubAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
@@ -22,11 +27,7 @@ const Header = () => {
                 // The signed-in user info.
                 const user = result.user;
                 dispatch(addUser({ token, user }))
-                // console.log('result', result)
-                // console.log('token', token)
-                console.log('user', userData)
             }).catch((error) => {
-                console.log(error)
                 // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
@@ -42,59 +43,50 @@ const Header = () => {
         signOut(auth).then(() => {
             // Sign-out successful.
             dispatch(deleteUser())
-            console.log('delete', userData)
         }).catch((error) => {
             // An error happened.
             console.log(error)
         })
     }
 
+    useEffect(() => {
+        // const selector = async () => {
+        //     userData = await useSelector(getUserData);
+        // };
+        return () => {
+            
+        }
+    }, [])
+
     return (
-        <Flex px='4%' py={6} h='60px' w='full' bg='gray.50' align="center" justify="space-between">
+        <Flex px={8} py={2} h='50px' w='full' bg='white' boxShadow='md' align="center" justify="space-between">
             <Box alignItems='flex-start'>
                 <HStack>
-                    {/* <Box w={50} h={50}>
-                        <Image
-                            borderRadius='full'
-                            boxSize='100%'
-                            objectFit='cover'
-                            src="/images/GitHub-Logo.svg" alt="Logo" />
-                    </Box> */}
-                    <Icon as={VscGithub} w={45} h={45} />
+                    <Icon as={VscGithub} w={35} h={35} color='#36328A' />
                     <VStack>
-                        <Text>TOPIC</Text>
-                        <Text>MANAGER</Text>
+                        <Text fontWeight="bold" lineHeight='10px' color='#36328A'>TOPIC</Text>
+                        <Text fontWeight="bold" lineHeight='10px' color='#36328A'>MANAGER</Text>
                     </VStack>
                 </HStack>
             </Box>
-            <Flex h='full' w='30%' align="center" justify="space-between">
+            <Flex h='full' w='32%' align="center" justify="space-between">
                 <Flex w='70%' align="center" justify="space-between">
-                    <Text
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        fontWeight="extrabold"
-                    >
-                        How it works
-                    </Text>
-                    <Box>
-                        <Text>Login</Text>
-                    </Box>
-                    <Icon as={BiGitBranch} w={25} h={25} />
+                    <Text fontWeight='500'>How it works</Text>
+                    <Text fontWeight='500' onClick={avatar ? firebaseSignOut : firebaseSignInWithPopup}>{avatar ? 'Log out' : 'Login'}</Text>
+                    <Icon as={BiGitBranch} w={22} h={22} color='#6C63FF' />
                 </Flex>
-                <Box w={35} h={35}>
-                    <Image 
+                <Box w={30} h={30} border='1px' borderRadius='full' borderColor='gray.300'>
+                    <Image
                         borderRadius='full'
                         boxSize='100%'
                         objectFit='cover'
-                        src="/images/User-Profile-PNG-Image.png" alt="Logo" />
+                        src={avatar ? `${avatar}` : "/images/avatar.png"} alt="Logo" 
+                        />
                 </Box>
+                <HamburgerIcon />
             </Flex>
         </Flex>
     )
 }
 
 export default Header
-
-const Nav = styled.nav`
-    height: 70px;
-    background: #090b13;
-`

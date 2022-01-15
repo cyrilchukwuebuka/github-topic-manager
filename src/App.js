@@ -28,7 +28,7 @@ function App() {
   }, [])
 
   return (
-    <Container maxW='container.xl' padding={0}>
+    <Container maxW='full' padding={0}>
       <Router>
         <Routes>
           <Route path="/" element={<Layout />}>
