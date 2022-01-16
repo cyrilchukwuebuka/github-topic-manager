@@ -80,7 +80,7 @@ const Header = () => {
                         borderRadius='full'
                         boxSize='100%'
                         objectFit='cover'
-                        src={avatar ? `${avatar}` : "/images/avatar.png"} alt="Logo" 
+                        src={avatar ? `${avatar}` : "/images/UserAvatar.png"} alt="Logo" 
                         />
                 </Box>
                 <HamburgerIcon />
