@@ -1,5 +1,7 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, GithubAuthProvider } from "firebase/auth";
+import { deleteUser, getAuth, GithubAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import { addUser } from '../features/githubUser/githubUserSlice';
+import { TOKEN } from '../App';
 
 const firebaseConfig = {
     apiKey: "AIzaSyB2Bb7A0XludPb4wVKKgJKO7zW4KKa-s1A",
@@ -23,4 +25,40 @@ githubProvider.setCustomParameters({
 });
 
 
-export { app, githubProvider, auth }
+const firebaseSignInWithPopup = (dispatch) => {
+    signInWithPopup(auth, githubProvider)
+        .then((result) => {
+            // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+            const credential = GithubAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            localStorage.clear()
+            localStorage.setItem(TOKEN, token)
+
+            // The signed-in user info.
+            const user = result.user;
+            dispatch(addUser({ token, user }))
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.email;
+            // The AuthCredential type that was used.
+            const credential = GithubAuthProvider.credentialFromError(error);
+            console.log(errorCode, errorMessage, email, credential)
+        });
+}
+
+const firebaseSignOut = (dispatch) => {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+        localStorage.removeItem(TOKEN);
+        dispatch(deleteUser())
+    }).catch((error) => {
+        // An error happened.
+        console.log(error)
+    })
+}
+
+
+export { app, githubProvider, auth, firebaseSignInWithPopup, firebaseSignOut }
