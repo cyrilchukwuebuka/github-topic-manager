@@ -1,23 +1,35 @@
 import { Box, Button, Flex, Image, Text } from '@chakra-ui/react'
 import React from 'react'
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getRepos } from '../features/githubUser/githubUserSlice';
 
 const RepoDetail = () => {
-    // dummy count
-    // let topicCount = 0
+    let { repoID } = useParams();
+    const repo = Object.values(useSelector(getRepos))
+        .filter(repo => repo.id === Number(repoID))
+    console.log(repo[0])
+    const { name, description, id, node_id, topics, url } = repo[0]
+    console.log(name, typeof description, id, node_id, topics, url)
+    const renderTopics = topics && (topics.map((topic, index) => (
+        <Button key={index} marginEnd='10px' marginBottom='10px'>{topic}</Button>
+    )))
 
     return (
         <Flex w='100%' h='calc(100vh - 80px)' p={10}>
             <Flex direction='column' justify='space-between' align='center' h='100%' w='50%' paddingLeft={10}>
                 <Flex direction='column' justify='center' align='center' h='90%' w='100%'>
                     <Box marginBottom='20px'>
-                        <Text h='10%' textTransform='uppercase' fontSize='4xl'>Amazon Clone</Text>
+                        <Text h='10%' textTransform='uppercase' fontSize='3xl' textAlign='center'>{name}</Text>
                     </Box>
-                    <Box>
-                        <Text h='20%' textAlign='center' fontSize='18px'>A Project built with the intention to strengthen my knowledge of React and complex web technologies</Text>
-                    </Box>
+                    { description !== null ? (<Box>
+                        <Text h='20%' textAlign='center' fontSize='18px'>{description}</Text>
+                    </Box>) : (
+                            <Text textAlign='center'>This repository has no description</Text>
+                    )}
                     <Box h='60%'>
                         <Text h='10%' textAlign='center' my='20px' fontSize='2xl'>Topics</Text>
-                        <Flex h='70%' wrap='wrap' my='10px' justify='center' overflowY='scroll' sx={{
+                        {topics.length !== 0 ? (<Flex h='70%' p={5} marginBottom={3} wrap='wrap' my='10px' justify='center' overflowY='scroll' sx={{
                             '&::-webkit-scrollbar': {
                                 width: '10px',
                                 borderRadius: '8px',
@@ -28,51 +40,10 @@ const RepoDetail = () => {
                                 backgroundColor: `rgba(0, 0, 0, 0.05)`,
                             },
                         }}>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                            <Button marginEnd='10px' marginBottom='10px'>React -</Button>
-                        </Flex>
+                            {renderTopics}
+                        </Flex>) : (
+                            <Text textAlign='center'>No topic found</Text>
+                        )}
                     </Box>
                 </Flex>
                 <Flex w='100%' h='10%' align='center' justify='center'>

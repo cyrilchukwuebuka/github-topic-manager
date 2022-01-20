@@ -3,6 +3,7 @@ import { FaInstagram } from 'react-icons/fa'
 import { BsTwitter, BsLinkedin } from 'react-icons/bs'
 import React from 'react'
 import { Link } from '@chakra-ui/react'
+import { VscGithub } from 'react-icons/vsc'
 
 const Footer = () => {
     return (
@@ -15,18 +16,18 @@ const Footer = () => {
                 <Text >Chukwuebuka Cyril Muofunanya</Text>
             </Flex>
             <Flex align="center" justify="center" paddingRight='10px'>
-                <Text paddingRight='10px' fontWeight='500'>Social Media:</Text>
-                <Flex>
-                    <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                        <Link href='https://chakra-ui.com' isExternal _focus={{ outline: 'none' }}><Icon as={FaInstagram} color='red' /></Link>
-                    </Box>
-                    <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                        <Link href='https://chakra-ui.com' isExternal _focus={{ outline: 'none' }}><Icon as={BsTwitter} color='#1DA1F2' /></Link>
-                    </Box>
-                    <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                        <Link href='https://chakra-ui.com' isExternal _focus={{ outline: 'none' }}><Icon as={BsLinkedin} color='#0077b5' /></Link>
-                    </Box>
-                </Flex>
+                <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
+                    <Link href='https://github.com/cyrilchukwuebuka' isExternal _focus={{ outline: 'none' }}><Icon as={VscGithub} color='black' /></Link>
+                </Box>
+                <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
+                    <Link href='https://www.instagram.com/chuk_cy/?hl=en' isExternal _focus={{ outline: 'none' }}><Icon as={FaInstagram} color='red' /></Link>
+                </Box>
+                <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
+                    <Link href='https://twitter.com/hooolycode' isExternal _focus={{ outline: 'none' }}><Icon as={BsTwitter} color='#1DA1F2' /></Link>
+                </Box>
+                <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
+                    <Link href='www.linkedin.com/in/chukwuebuka-cyril-muofunanya' isExternal _focus={{ outline: 'none' }}><Icon as={BsLinkedin} color='#0077b5' /></Link>
+                </Box>
             </Flex>
         </Flex>
     )

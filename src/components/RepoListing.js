@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverTrigger, Spinner } from '@chakra-ui/react'
+import { Button, Container, Flex, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncRepos, getLoader, getRepos, getUserData } from '../features/githubUser/githubUserSlice';
@@ -9,12 +9,12 @@ const RepoListing = () => {
     const dispatch = useDispatch();
     const isLoaded = useSelector(getLoader);
     const repos = Object.values(useSelector(getRepos));
-    let hasCount = false;
+    let hasCount = ~false;
     console.log(isLoaded, Array.isArray(repos))
     console.log(isLoaded, repos)
 
     const repoRender = repos.map((repo) => (
-        <RepoCard description={repo.description} id={repo.id} name={repo.name} node_id={repo.node_id} topics={repo.topics} url={repo.url} />
+        <RepoCard key={repo.id} description={repo.description} id={repo.id} name={repo.name} node_id={repo.node_id} topics={repo.topics} url={repo.url} />
     ))
 
     useEffect(() => {

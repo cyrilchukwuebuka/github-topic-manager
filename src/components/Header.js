@@ -32,7 +32,7 @@ const Header = () => {
             </Box>
             <Flex h='full' w='32%' align="center" justify="space-between">
                 <Flex w='70%' align="center" justify="space-between">
-                    <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }} fontWeight='500'>How It Works</Link>
+                    <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} fontWeight='500'>How It Works</Link>
                     <Text _hover={{ transform: 'scale(1.05)', cursor: "pointer" }} fontWeight='500' onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>
                     <Link href='https://github.com/cyrilchukwuebuka/github-topic-manager' isExternal _focus={{ outline: 'none' }}><Icon as={BiGitBranch} w={22} h={22} color='brand.500' _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} /></Link>
                 </Flex>
@@ -41,7 +41,7 @@ const Header = () => {
                         borderRadius='full'
                         boxSize='100%'
                         objectFit='cover'
-                        src={avatar ? `${avatar}` : "/images/UserAvatar.png"} alt="Logo"
+                        src={avatar ? `${avatar}` : "/images/UserAvatar.png"} alt="Avatar"
                     />
                 </Box>
                 <HamburgerIcon _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />
