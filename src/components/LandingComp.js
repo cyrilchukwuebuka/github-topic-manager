@@ -3,6 +3,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link as ReactLink } from "react-router-dom"
 import { firebaseSignInWithPopup } from '../services/firebaseApp'
+import Tilt from 'react-parallax-tilt'
 
 const LandingComp = () => {
     const dispatch = useDispatch()
@@ -10,9 +11,11 @@ const LandingComp = () => {
     return (
         <Container maxW='container.xl' w='100%' h='calc(100vh - 80px)' padding={5} m='auto'>
             <Flex wrap='wrap' py='8%' my='2%' align='center' justify='center' borderRight='1px' borderTop='1px' borderColor='gray.200' boxShadow='base'>
-                <Box p={8} marginRight={5} h='350px' w='350px' borderLeft='1px' borderBottom='1px' borderColor='gray.200' boxShadow='base'>
-                    <Image src='/images/topic.svg' alt='Topic' />
-                </Box >
+                <Tilt tiltMaxAngleX={5} tiltMaxAngleY={5}>
+                    <Box p={8} marginRight={5} h='350px' w='350px' borderLeft='1px' borderBottom='1px' borderColor='gray.200' boxShadow='base'>
+                        <Image src='/images/topic.svg' alt='Topic' />
+                    </Box >
+                </Tilt>
                 <Flex align='center' justify='center' direction='column'>
                     <Flex p={10} wrap='wrap' align='center' justify='center'>
                         <Text fontStyle='italic'>Another Great Day To Create Splendid Topics...</Text>

@@ -1,20 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { firebaseSignInWithPopup, firebaseSignOut } from '../services/firebaseApp';
 import { getUserData } from '../features/githubUser/githubUserSlice';
-import {
-    Box, Flex, HStack, Icon, Image, Link, LinkBox, Text, VStack, LinkOverlay, Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-    useDisclosure, } from '@chakra-ui/react';
+import { Box, Flex, HStack, Icon, Image, Link, LinkBox, Text, VStack, LinkOverlay, useDisclosure, } from '@chakra-ui/react';
 import { VscGithub } from 'react-icons/vsc';
 import { BiGitBranch } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
 import { HamburgerIcon } from '@chakra-ui/icons'
 import { Link as ReactLink } from "react-router-dom";
+import Tilt from 'react-parallax-tilt';
+import DrawerCompenent from './Drawer';
 
 const Header = () => {
 
@@ -26,11 +20,11 @@ const Header = () => {
 
     return (
         <Flex px={8} py={2} h='50px' w='full' bg='white' boxShadow='md' align="center" justify="space-between">
-            <Box alignItems='flex-start'>
+            <Box alignItems='center'>
                 <LinkBox>
-                    <HStack _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
+                    <HStack _hover={{ cursor: "pointer" }}>
                         <LinkOverlay as={ReactLink} to='/'>
-                            <Icon as={VscGithub} w={35} h={35} color='#36328A' />
+                            <Tilt tiltMaxAngleX={20} tiltMaxAngleY={20}><Icon as={VscGithub} w={35} h={35} color='#36328A' /></Tilt>
                         </LinkOverlay>
                         <VStack>
                             <Text fontWeight="bold" lineHeight='10px' color='brand.600'>TOPIC</Text>
@@ -54,37 +48,7 @@ const Header = () => {
                     />
                 </Box>
                 <HamburgerIcon onClick={onOpen} _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />
-                <Drawer
-                    isOpen={isOpen}
-                    placement='right'
-                    onClose={onClose}
-                >
-                    <DrawerOverlay />
-                    <DrawerContent>
-                        <DrawerCloseButton />
-                        <DrawerHeader>
-                            <LinkBox>
-                                <HStack _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
-                                    <LinkOverlay as={ReactLink} to='/'>
-                                        <Icon as={VscGithub} w={35} h={35} color='#36328A' />
-                                    </LinkOverlay>
-                                    <VStack>
-                                        <Text fontWeight="bold" lineHeight='10px' color='brand.600'>TOPIC</Text>
-                                        <Text fontWeight="bold" lineHeight='10px' color='brand.600'>MANAGER</Text>
-                                    </VStack>
-                                </HStack>
-                            </LinkBox>
-                        </DrawerHeader>
-
-                        <DrawerBody>
-                            <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} fontWeight='500'>How It Works</Link>
-                            <Text _hover={{ transform: 'scale(1.05)', cursor: "pointer" }} fontWeight='500' onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>
-                        </DrawerBody>
-
-                        <DrawerFooter>
-                        </DrawerFooter>
-                    </DrawerContent>
-                </Drawer>
+                <DrawerCompenent isOpen={isOpen} onClose={onClose} accessToken={accessToken}/>
             </Flex>
         </Flex >
     )
