@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { firebaseSignInWithPopup, firebaseSignOut } from '../services/firebaseApp';
 import { getUserData } from '../features/githubUser/githubUserSlice';
-import { Box, Flex, HStack, Icon, Image, Link, LinkBox, Text, VStack, LinkOverlay } from '@chakra-ui/react';
+import {
+    Box, Flex, HStack, Icon, Image, Link, LinkBox, Text, VStack, LinkOverlay, Drawer,
+    DrawerBody,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerOverlay,
+    DrawerContent,
+    DrawerCloseButton,
+    useDisclosure, } from '@chakra-ui/react';
 import { VscGithub } from 'react-icons/vsc';
 import { BiGitBranch } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +19,7 @@ import { Link as ReactLink } from "react-router-dom";
 const Header = () => {
 
     const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     let userData = useSelector(getUserData).user;
     let avatar = userData?.photoURL;
     let accessToken = userData?.accessToken;
@@ -44,7 +53,38 @@ const Header = () => {
                         src={avatar ? `${avatar}` : "/images/UserAvatar.png"} alt="Avatar"
                     />
                 </Box>
-                <HamburgerIcon _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />
+                <HamburgerIcon onClick={onOpen} _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />
+                <Drawer
+                    isOpen={isOpen}
+                    placement='right'
+                    onClose={onClose}
+                >
+                    <DrawerOverlay />
+                    <DrawerContent>
+                        <DrawerCloseButton />
+                        <DrawerHeader>
+                            <LinkBox>
+                                <HStack _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
+                                    <LinkOverlay as={ReactLink} to='/'>
+                                        <Icon as={VscGithub} w={35} h={35} color='#36328A' />
+                                    </LinkOverlay>
+                                    <VStack>
+                                        <Text fontWeight="bold" lineHeight='10px' color='brand.600'>TOPIC</Text>
+                                        <Text fontWeight="bold" lineHeight='10px' color='brand.600'>MANAGER</Text>
+                                    </VStack>
+                                </HStack>
+                            </LinkBox>
+                        </DrawerHeader>
+
+                        <DrawerBody>
+                            <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} fontWeight='500'>How It Works</Link>
+                            <Text _hover={{ transform: 'scale(1.05)', cursor: "pointer" }} fontWeight='500' onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>
+                        </DrawerBody>
+
+                        <DrawerFooter>
+                        </DrawerFooter>
+                    </DrawerContent>
+                </Drawer>
             </Flex>
         </Flex >
     )
