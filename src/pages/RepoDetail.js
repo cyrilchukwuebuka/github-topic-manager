@@ -1,27 +1,39 @@
 import { Box, Button, Flex, Image, Link, Text, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ModalComponent from '../components/Modal';
-import { getRepos } from '../features/githubUser/githubUserSlice';
+import { getRepos, getUserData } from '../features/githubUser/githubUserSlice';
+import Fade from 'react-reveal/Fade'
+import Bounce from 'react-reveal/Bounce'
+import { updateRepoTopic } from '../services/utility';
 
 const RepoDetail = () => {
-    let { repoID } = useParams();
+    const { repoID } = useParams();
+    const accessToken = useSelector(getUserData)?.token;
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    // const navigate = useNavigate();
     const repo = Object.values(useSelector(getRepos))
         .filter(repo => repo.id === Number(repoID))
     console.log(repo[0])
     const { name, description, id, topics, html_url } = repo[0]
-    // console.log(name, typeof description, id, topics, html_url)
-    const { isOpen, onOpen, onClose } = useDisclosure()
 
     const onRemove = (topics) => {
         onClose()
-        console.log(topics, id)
+        updateRepoTopic(topics, 'remove', accessToken, repo)
+        // navigate("/");
+        // setTimeout(() => {
+        //     window.location.reload()
+        // }, 3000);
     }
 
     const onAdd = (topics) => {
         onClose();
-        console.log(topics, id)
+        updateRepoTopic(topics, 'add', accessToken, repo)
+        // navigate("/");
+        // setTimeout(() => {
+        //     window.location.reload()
+        // }, 3000);
     }
 
     return (
@@ -51,7 +63,9 @@ const RepoDetail = () => {
                         }}>
                             {
                                 (topics.map((topic, index) => (
-                                    <Button key={index} marginEnd='10px' marginBottom='10px'>{topic}</Button>
+                                    <Fade bottom>
+                                        <Button key={index} marginEnd='10px' marginBottom='10px'>{topic}</Button>
+                                    </Fade>
                                 )))
                             }
                         </Flex>) : (
@@ -67,10 +81,12 @@ const RepoDetail = () => {
                         <Link isExternal href={html_url} _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }}>Repo GitHub Page</Link>
                     </Button>
                 </Flex>
-                <ModalComponent isOpen={isOpen} onClose={onClose} onRemove={onRemove} onAdd={onAdd}/>
+                <ModalComponent isOpen={isOpen} onClose={onClose} onRemove={onRemove} onAdd={onAdd} />
             </Flex>
             <Box alignItems='center' padding='50px' w='50%' h='100%'>
-                <Image w='100%' h='100%' src='/images/repoDetail.svg' />
+                <Bounce right>
+                    <Image w='100%' h='100%' src='/images/repoDetail.svg' />
+                </Bounce>
             </Box>
         </Flex>
     )

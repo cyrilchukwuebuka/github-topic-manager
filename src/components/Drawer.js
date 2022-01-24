@@ -6,7 +6,6 @@ import {
     DrawerHeader,
     DrawerOverlay,
     DrawerContent,
-    DrawerCloseButton,
     Link,
     Text,
     Box,
@@ -15,7 +14,6 @@ import {
     LinkOverlay,
     VStack,
     Icon,
-    useDisclosure,
     Button,
     Flex,
     Image,
@@ -27,10 +25,10 @@ import Tilt from 'react-parallax-tilt';
 import { VscGithub } from 'react-icons/vsc';
 import { FaInstagram } from 'react-icons/fa';
 import { BsLinkedin, BsTwitter } from 'react-icons/bs';
+import Fade from 'react-reveal/Fade'
 
 const DrawerCompenent = ({ isOpen, onClose, accessToken }) => {
     const dispatch = useDispatch();
-    // const { onClose } = useDisclosure()
 
 
     return (
@@ -63,13 +61,19 @@ const DrawerCompenent = ({ isOpen, onClose, accessToken }) => {
                 </DrawerHeader>
 
                 <DrawerBody>
-                    <Box mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
-                        <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }} fontWeight='500'>How It Works</Link>
-                    </Box>
-                    <Text mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }} fontWeight='500' onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>
-                    <Box mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
-                        <Link href='https://github.com/cyrilchukwuebuka/github-topic-manager' _hover={{ cursor: "pointer" }} fontWeight='500' >Fork Repo</Link>
-                    </Box>
+                    <Fade top>
+                        <Box mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
+                            <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }} fontWeight='500'>How It Works</Link>
+                        </Box>
+                    </Fade>
+                    <Fade right>
+                        <Text mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }} fontWeight='500' onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>
+                    </Fade>
+                    <Fade bottom>
+                        <Box mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
+                            <Link href='https://github.com/cyrilchukwuebuka/github-topic-manager' _hover={{ cursor: "pointer" }} fontWeight='500' >Fork Repo</Link>
+                        </Box>
+                    </Fade>
                 </DrawerBody>
 
                 <DrawerFooter>

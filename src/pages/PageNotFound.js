@@ -1,14 +1,17 @@
 import { Box, Button, Flex, Image, Link, Text } from '@chakra-ui/react'
 import React from 'react'
-import {Link as ReactLink} from 'react-router-dom'
+import { Link as ReactLink } from 'react-router-dom'
+import Bounce from 'react-reveal/Bounce'
 
 const PageNotFound = () => {
     return (
         <Flex justify='center' align='center' h='calc(100vh - 80px)' w='100%'>
-            <Box w='fit-content' h='fit-content'>
-                <Image w='350px' h='350px' src='/images/voodooMaster.jpg' />
-                <Text textAlign='center' my={4} fontStyle='italic' fontSize='2xl' fontWeight='600'>Voodoo Lord</Text>
-            </Box>
+            <Bounce bottom>
+                <Box w='fit-content' h='fit-content'>
+                    <Image w='350px' h='350px' src='/images/voodooMaster.jpg' />
+                    <Text textAlign='center' my={4} fontStyle='italic' fontSize='2xl' fontWeight='600'>Voodoo Lord</Text>
+                </Box>
+            </Bounce>
             <Flex direction='column' justify='center' align='center'>
                 <Box marginBottom={20}>
                     <Text fontStyle='italic' fontSize='4xl' fontWeight='600'>Oooops!!!...</Text>
@@ -22,8 +25,8 @@ const PageNotFound = () => {
                 <Box>
                     <Text>Click the below button</Text>
                 </Box>
-                <Button marginTop={10} bgColor='#6C63FF' color='white' _focus={{ outline: 'none' }} _hover={{ bg: 'brand.300' }} _active={{ transform: 'scale(1.05)' }}>
-                    <Link as={ReactLink} to='/'>Conjure Path</Link>
+                <Button marginTop={10} bgColor='#6C63FF' color='white' _focus={{ outline: 'none' }} _hover={{ bg: 'brand.300', outline: 'none' }} _active={{ transform: 'scale(1.05)' }}>
+                    <Link as={ReactLink} to='/' _hover={{ outline: 'none' }}>Conjure Path</Link>
                 </Button>
             </Flex>
         </Flex>

@@ -4,18 +4,15 @@ import { initOctokit } from "../../services/githubOctokit";
 const initialState = {
     userData: {},
     isLoaded: false,
-    repos: [],
-    selectedRepo: [],
-    repoDetail: {},
+    repos: []
 };
-
 
 export const fetchAsyncRepos = createAsyncThunk('githubUser/fetchAsyncRepos', async (accessToken) => {
     const octokit = await initOctokit(accessToken);
-    const data = await octokit.rest.repos.listForAuthenticatedUser({ sort: 'created' });
-    const repos = data.data
+    const data = await octokit.paginate(octokit.rest.repos.listForAuthenticatedUser, { sort: 'created' });
+    console.log(data)
 
-    return repos
+    return data
 })
 
 const githubUserSlice = createSlice({
@@ -46,7 +43,7 @@ const githubUserSlice = createSlice({
             state.isLoaded = false;
         },
         [fetchAsyncRepos.fulfilled]: (state, { payload }) => {
-            state.repos = {...payload};
+            state.repos = { ...payload };
             state.isLoaded = true;
             console.log('fulfilled', payload)
             // return { ...state, repos: payload, loader: false }
@@ -57,7 +54,7 @@ const githubUserSlice = createSlice({
     }
 });
 
-export const { addUser, addRepos, deleteUser } = githubUserSlice.actions;
+export const { addUser, addRepos, deleteUser, replaceRepoTopics } = githubUserSlice.actions;
 export const getUserData = (state) => state.githubUsers.userData;
 export const getRepos = (state) => state.githubUsers.repos;
 export const getLoader = (state) => state.githubUsers.isLoaded;

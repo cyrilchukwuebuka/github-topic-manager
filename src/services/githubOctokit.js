@@ -1,18 +1,13 @@
 import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
+import { paginateRest } from "https://cdn.skypack.dev/@octokit/plugin-paginate-rest";
 
+const MyOctokit = Octokit.plugin(paginateRest)
 
 const initOctokit = (accessToken) => {
-    const octokit = new Octokit({
+    const octokit = new MyOctokit({
         auth: accessToken
     });
-    console.log(octokit)
     return octokit;
 }
-
-// const getRepos = async (octokit) => {
-//     const data = await octokit.rest.repos.listForAuthenticatedUser({ sort: 'created' });
-//     const repos = data.data
-//     return repos;
-// }
 
 export { initOctokit }
