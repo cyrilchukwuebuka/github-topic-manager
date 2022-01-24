@@ -1,5 +1,5 @@
-import { Octokit } from "https://cdn.skypack.dev/@octokit/rest";
-import { paginateRest } from "https://cdn.skypack.dev/@octokit/plugin-paginate-rest";
+import { Octokit } from "@octokit/rest";
+import { paginateRest } from "@octokit/plugin-paginate-rest";
 
 const MyOctokit = Octokit.plugin(paginateRest)
 

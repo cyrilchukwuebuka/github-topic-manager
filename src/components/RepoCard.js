@@ -1,12 +1,8 @@
 import { Box, Checkbox, Flex, Link } from '@chakra-ui/react'
-import React, { useRef, useState } from 'react'
+import React from 'react'
 import { Link as ReactLink } from 'react-router-dom'
 
 const RepoCard = ({ name, id, repo, callback }) => {
-    // const [isChecked, setIsChecked] = useState(false);
-    // const checked = useRef()
-    // callback(repo)
-    // console.log(checked.current?.value)
 
     return (
         <Flex direction='column'>
