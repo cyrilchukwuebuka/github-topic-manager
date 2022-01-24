@@ -18,7 +18,6 @@ const RepoListing = () => {
 
     const checkedRepoValue = (repo) => {
         const foundIndex = selectedRepo.findIndex(checkRepo => checkRepo.id.toString() === repo.id.toString())
-        console.log(foundIndex)
         if (foundIndex === -1) {
             setSelectedRepo([...selectedRepo, repo])
             setCount(++count)
@@ -28,7 +27,6 @@ const RepoListing = () => {
             setSelectedRepo([...tempRepo])
             setCount(--count)
         }
-        console.log(selectedRepo[0])
     }
 
     const repoRender = repos.map((repo) => (
@@ -38,24 +36,18 @@ const RepoListing = () => {
     const onAdd = (topics) => {
         onClose()
         updateRepoTopic(topics, 'add', accessToken, selectedRepo)
-        // setTimeout(() => {
-        //     window.location.reload()
-        // }, 1000);
     }
 
     const onRemove = (topics) => {
         onClose()
         updateRepoTopic(topics, 'remove', accessToken, selectedRepo)
-        // setTimeout(() => {
-        //     window.location.reload()
-        // }, 1000);
     }
 
     useEffect(() => {
         dispatch(fetchAsyncRepos(accessToken))
         console.log('useEffect')
         return () => { }
-    }, [dispatch])
+    }, [dispatch, accessToken])
 
     return <>
         {

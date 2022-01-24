@@ -1,7 +1,6 @@
 import { initOctokit } from "./githubOctokit";
 
 const replaceTopicsInRepo = async (accessToken, repo, topics) => {
-    console.log(repo)
     const octokit = await initOctokit(accessToken);
     octokit.rest.repos.replaceAllTopics({
         owner: repo.owner.login,
