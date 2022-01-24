@@ -40,15 +40,25 @@ const Header = () => {
                     <Link href='https://github.com/cyrilchukwuebuka/github-topic-manager' isExternal _focus={{ outline: 'none' }}><Icon as={BiGitBranch} w={22} h={22} color='brand.500' _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} /></Link>
                 </Flex>
                 <Box w={30} h={30} border='1px' borderRadius='full' borderColor='gray.300'>
-                    <Image
-                        borderRadius='full'
-                        boxSize='100%'
-                        objectFit='cover'
-                        src={avatar ? `${avatar}` : "/images/UserAvatar.png"} alt="Avatar"
-                    />
+                    <>
+                        {avatar ?
+                            (<Image
+                                borderRadius='full'
+                                boxSize='100%'
+                                objectFit='cover'
+                                src={avatar} alt="Avatar"
+                            />) :
+                            (<Image
+                                borderRadius='full'
+                                boxSize='100%'
+                                objectFit='cover'
+                                src="/images/UserAvatar.png" alt="Avatar"
+                            />)
+                        }
+                    </>
                 </Box>
                 <HamburgerIcon onClick={onOpen} _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />
-                <DrawerCompenent isOpen={isOpen} onClose={onClose} accessToken={accessToken}/>
+                <DrawerCompenent isOpen={isOpen} onClose={onClose} accessToken={accessToken} />
             </Flex>
         </Flex >
     )
