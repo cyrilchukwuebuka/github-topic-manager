@@ -7,11 +7,10 @@ import Tilt from 'react-parallax-tilt'
 import Bounce from 'react-reveal/Bounce'
 
 const LandingComp = () => {
-    const [isLargerThan1085] = useMediaQuery('(min-width: 1085px)')
     const dispatch = useDispatch()
 
     return (
-        <Container maxW='container.xl' w='100%' h={isLargerThan1085 ? 'calc(100vh - 80px)' : '100%'} padding='10px'>
+        <Container maxW='container.xl' w='100%' h='calc(100vh - 80px)' padding='10px'>
             <Flex wrap='wrap' py='8%' my='2%' align='center' justify='center' borderRight='1px' borderTop='1px' borderColor='gray.200' boxShadow='base' overflowY='scroll' sx={{
                 '&::-webkit-scrollbar': {
                     width: '1px',
