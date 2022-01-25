@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebaseApp';
 import { addUser, deleteUser } from './features/githubUser/githubUserSlice';
 import { useDispatch } from 'react-redux';
-import { Box, Container, Flex, Text, VStack } from '@chakra-ui/react';
+import { Container, Flex, Text } from '@chakra-ui/react';
 import { useMediaQuery } from '@chakra-ui/react'
 // component import
 import './App.css';
@@ -31,7 +31,7 @@ function App() {
         dispatch(addUser({ token, user }))
       }
     })
-  }, [])
+  }, [dispatch])
 
   return (
     <>
