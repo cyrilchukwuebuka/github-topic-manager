@@ -36,11 +36,17 @@ const RepoListing = () => {
     const onAdd = (topics) => {
         onClose()
         updateRepoTopic(topics, 'add', accessToken, selectedRepo)
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000);
     }
 
     const onRemove = (topics) => {
         onClose()
         updateRepoTopic(topics, 'remove', accessToken, selectedRepo)
+        setTimeout(() => {
+            window.location.reload()
+        }, 2000);
     }
 
     useEffect(() => {
