@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, useDisclosure } from '@chakra-ui/react'
+import { Button, Container, Flex, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncRepos, getLoader, getRepos, getUserData } from '../features/githubUser/githubUserSlice';
@@ -63,11 +63,11 @@ const RepoListing = () => {
                         <Popover>
                             <PopoverTrigger>
                                 {count === 0 ? (
-                                    <Button mb={4} color='white' bgColor='brand.300' _hover={{ transform: 'scale(1.05)', bg: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }}>
-                                        ADD TOPIC
+                                    <Button mb={{ base: '12px', md: '14px', lg: '16px' }} h={{ base: '36px', md: '40px', lg: '40px' }} w={{ base: '76px', md: '80px', lg: '80px' }} color='white' bgColor='brand.300' _hover={{ transform: 'scale(1.05)', bg: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }}>
+                                        <Text fontSize='12px'>ADD TOPIC</Text>
                                     </Button>) : (
-                                    <Button mb={4} onClick={onOpen} color='white' bgColor='brand.500' _hover={{ transform: 'scale(1.05)', bg: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }}>
-                                        ADD TOPIC
+                                    <Button mb={{ base: '12px', md: '14px', lg: '16px' }} h={{ base: '36px', md: '40px', lg: '40px' }} w={{ base: '76px', md: '80px', lg: '80px' }} onClick={onOpen} color='white' bgColor='brand.500' _hover={{ transform: 'scale(1.05)', bg: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }}>
+                                        <Text fontSize='12px'>ADD TOPIC</Text>
                                     </Button>)
                                 }
                             </PopoverTrigger>

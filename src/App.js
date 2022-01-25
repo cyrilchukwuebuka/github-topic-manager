@@ -19,7 +19,7 @@ export const TOKEN = 'token';
 function App() {
   const dispatch = useDispatch();
   const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
-  const [isLargerThan1082] = useMediaQuery('(min-width: 1082px)')
+  const [isLargerThan310] = useMediaQuery('(min-width: 310px)')
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -36,7 +36,7 @@ function App() {
 
   return (
     <>
-      {isLargerThan1082 ?
+      {isLargerThan310 ?
         (<Container bg={bgColor} maxW='full' padding={0}>
           <Router>
             <Routes>

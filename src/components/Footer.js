@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Image, Text, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import { Box, Flex, Icon, Image, Text, useColorMode, useColorModeValue, useMediaQuery } from '@chakra-ui/react'
 import { FaInstagram } from 'react-icons/fa'
 import { BsTwitter, BsLinkedin } from 'react-icons/bs'
 import React from 'react'
@@ -15,24 +15,34 @@ const Footer = () => {
     return (
         <Flex px='4px' py='6px' h='30px' w='full' bg={bgColor} borderTop='1px' borderColor='gray.200' boxShadow='sm' align="center" justify="space-between" >
             <Flex paddingLeft='10px' align="center" justify="center">
-                <Text paddingRight='10px'>© 2022</Text>
-                <Box w='15px' h='15px' marginRight='10px'>
-                    <Image w='100%' h='100%' src='/images/flag.png' />
-                </Box>
-                <Text >Chukwuebuka Cyril Muofunanya</Text>
+                <Flex align="center" justify="center">
+                    <Text textAlign='center' paddingRight='10px' fontSize={{ base: '10px', md: '12px', lg: '14px' }}>© 2022</Text>
+                    <Box w={{ base: '10px', md: '13px', lg: '14px' }} h={{ base: '10px', md: '13px', lg: '14px' }} marginRight='10px'>
+                        <Image w='100%' h='100%' src='/images/flag.png' />
+                    </Box>
+                </Flex>
+                <Text fontSize={{ base: '10px', md: '12px', lg: '14px' }}>Chukwuebuka Cyril Muofunanya</Text>
             </Flex>
             <Flex align="center" justify="center" paddingRight='10px'>
                 <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                    <Link href='https://github.com/cyrilchukwuebuka' isExternal _focus={{ outline: 'none' }}><Icon as={VscGithub} color={bgGithub} /></Link>
+                    <Link href='https://github.com/cyrilchukwuebuka' isExternal _focus={{ outline: 'none' }}>
+                        <Icon as={VscGithub} color={bgGithub} w={{ base: '12px', md: '13px', lg: '14px' }} h={{ base: '12px', md: '13px', lg: '14px' }} />
+                    </Link>
                 </Box>
                 <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                    <Link href='https://www.instagram.com/chuk_cy/?hl=en' isExternal _focus={{ outline: 'none' }}><Icon as={FaInstagram} color={bgInstagram} /></Link>
+                    <Link href='https://www.instagram.com/chuk_cy/?hl=en' isExternal _focus={{ outline: 'none' }}>
+                        <Icon as={FaInstagram} color={bgInstagram} w={{ base: '12px', md: '13px', lg: '14px' }} h={{ base: '12px', md: '13px', lg: '14px' }} />
+                    </Link>
                 </Box>
                 <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                    <Link href='https://twitter.com/hooolycode' isExternal _focus={{ outline: 'none' }}><Icon as={BsTwitter} color={bgTwitter} /></Link>
+                    <Link href='https://twitter.com/hooolycode' isExternal _focus={{ outline: 'none' }}>
+                        <Icon as={BsTwitter} color={bgTwitter} w={{ base: '12px', md: '13px', lg: '14px' }} h={{ base: '12px', md: '13px', lg: '14px' }} />
+                    </Link>
                 </Box>
                 <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                    <Link href='www.linkedin.com/in/chukwuebuka-cyril-muofunanya' isExternal _focus={{ outline: 'none' }}><Icon as={BsLinkedin} color={bgLinkedIn} /></Link>
+                    <Link href='www.linkedin.com/in/chukwuebuka-cyril-muofunanya' isExternal _focus={{ outline: 'none' }}>
+                        <Icon as={BsLinkedin} color={bgLinkedIn} w={{ base: '12px', md: '13px', lg: '14px' }} h={{ base: '12px', md: '13px', lg: '14px' }} />
+                    </Link>
                 </Box>
             </Flex>
         </Flex>
