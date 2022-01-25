@@ -5,6 +5,8 @@ With topics, exploring repositories in a particular subject area, finding projec
 
 Topics appear on the main page of a repository. Clicking on a topic name refers you to see related topics and a list of other repositories classified with that topic.  
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4e9ed08e-a9e6-4be1-957b-ba7c764375b8/deploy-status)](https://app.netlify.com/sites/github-topic-manager/deploys)  
+
 ## TECHNOLOGIES USED  
 *  [React](https://reactjs.org/)  
 *  [React-redux (Redux-toolkit)](https://redux-toolkit.js.org/)
