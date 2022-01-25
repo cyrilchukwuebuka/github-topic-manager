@@ -4,7 +4,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebaseApp';
 import { addUser, deleteUser } from './features/githubUser/githubUserSlice';
 import { useDispatch } from 'react-redux';
-import { Container, Flex, Text } from '@chakra-ui/react';
+import { Container, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { useMediaQuery } from '@chakra-ui/react'
 // component import
 import './App.css';
@@ -17,7 +17,8 @@ import RepoDetail from './pages/RepoDetail';
 export const TOKEN = 'token';
 
 function App() {
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
   const [isLargerThan1082] = useMediaQuery('(min-width: 1082px)')
 
   useEffect(() => {
@@ -36,7 +37,7 @@ function App() {
   return (
     <>
       {isLargerThan1082 ?
-        (<Container maxW='full' padding={0}>
+        (<Container bg={bgColor} maxW='full' padding={0}>
           <Router>
             <Routes>
               <Route path="/" element={<Layout />}>

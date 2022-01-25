@@ -13,6 +13,17 @@ const theme = extendTheme({
       300: '#8E88F7',
       500: '#6C63FF',
       600: '#36328A',
+    },
+    themeLight: {
+      bg: 'white',
+      icon: '#6C63FF',
+      logo: '#36328A'
+    },
+    themeDark: {
+      bg: '#1A202C',
+      bgBody: '#032033',
+      icon: 'white',
+      logo: 'white'
     }
   }
 })

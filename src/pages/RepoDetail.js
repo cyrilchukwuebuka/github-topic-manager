@@ -1,5 +1,5 @@
-import { Box, Button, Container, Flex, Image, Link, Spinner, Text, useDisclosure } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react';
+import { Box, Button, Container, Flex, Image, Link, Spinner, Text, useColorModeValue, useDisclosure } from '@chakra-ui/react'
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ModalComponent from '../components/Modal';
@@ -10,6 +10,7 @@ import { updateRepoTopic } from '../services/utility';
 import { TOKEN } from '../App';
 
 const RepoDetail = () => {
+    const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
     const dispatch = useDispatch()
     const { repoID } = useParams();
     const [owner, id, repoName] = repoID.match(/[a-z-_]+|[0-9]+/ig)
@@ -41,7 +42,7 @@ const RepoDetail = () => {
         <>
             {
                 isLoaded ? (
-                    <Flex w='100%' h='calc(100vh - 80px)' p={10}>
+                    <Flex w='100%' h='calc(100vh - 80px)' p={10} bg={bgColor}>
                         <Flex direction='column' justify='space-between' align='center' h='100%' w='50%' paddingLeft={10}>
                             <Flex direction='column' justify='center' align='center' h='90%' w='100%'>
                                 <Box marginBottom='20px'>

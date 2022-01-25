@@ -7,8 +7,8 @@ const PageNotFound = () => {
     return (
         <Flex justify='center' align='center' h='calc(100vh - 80px)' w='100%'>
             <Bounce bottom>
-                <Box w='fit-content' h='fit-content'>
-                    <Image w='350px' h='350px' src='/images/voodooMaster.jpg' />
+                <Box w='fit-content' h='fit-content' mr={10}>
+                    <Image w='350px' h='350px' borderRadius='md' src='/images/voodooMaster.jpg' />
                     <Text textAlign='center' my={4} fontStyle='italic' fontSize='2xl' fontWeight='600'>Voodoo Lord</Text>
                 </Box>
             </Bounce>
