@@ -32,7 +32,6 @@ export const TYPES = {
 }
 
 export const updateRepoTopic = (topics, type = '', accessToken, reposArray) => {
-    console.log(reposArray)
     if (topics !== '') {
         const topicsArray = topics.match(/[^ , ]+/gi)
             .map(topic => topic.toLowerCase())

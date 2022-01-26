@@ -16,17 +16,6 @@ export const fetchAsyncRepos = createAsyncThunk('githubUser/fetchAsyncRepos', as
     return data
 })
 
-// export const replaceTopicsInRepo = createAsyncThunk('githubUser/replaceTopicsInRepo', async ({accessToken, repo, topics}) => {
-//     const octokit = await initOctokit(accessToken);
-//     octokit.rest.repos.replaceAllTopics({
-//         owner: repo.owner.login,
-//         repo: repo.name,
-//         names: topics
-//     });
-
-//     return []
-// })
-
 export const fetchAsyncRepo = createAsyncThunk('githubUser/fetchAsyncRepo', async ({ accessToken, owner, repoName }) => {
     console.log(accessToken, owner, repoName)
     const octokit = await initOctokit(accessToken);
@@ -69,15 +58,9 @@ const githubUserSlice = createSlice({
             state.isLoaded = true;
         },
         [fetchAsyncRepo.fulfilled]: (state, { payload }) => {
-            console.log(payload)
             state.repo = { ...payload };
             state.isLoaded = true;
         },
-        // [replaceTopicsInRepo.fulfilled]: (state, { payload }) => {
-        //     console.log(payload)
-        //     state.repo = { ...payload };
-        //     state.isLoaded = true;
-        // },
         [fetchAsyncRepos.rejected]: (state, { payload }) => {
             console.log('rejected')
         }

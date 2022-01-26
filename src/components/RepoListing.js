@@ -1,4 +1,4 @@
-import { Button, Container, Flex, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, useDisclosure } from '@chakra-ui/react'
+import { Button, Container, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, useDisclosure } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAsyncRepos, getLoader, getRepos, getUserData } from '../features/githubUser/githubUserSlice';
@@ -13,6 +13,7 @@ const RepoListing = () => {
     const isLoaded = useSelector(getLoader);
     const repos = Object.values(useSelector(getRepos));
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const [open, setOpen] = useState(false)
     let [count, setCount] = useState(0);
     let [selectedRepo, setSelectedRepo] = useState([]);
 
@@ -36,17 +37,19 @@ const RepoListing = () => {
     const onAdd = (topics) => {
         onClose()
         updateRepoTopic(topics, 'add', accessToken, selectedRepo)
+        setOpen(!open)
         setTimeout(() => {
             window.location.reload()
-        }, 2000);
+        }, 3000);
     }
 
     const onRemove = (topics) => {
         onClose()
         updateRepoTopic(topics, 'remove', accessToken, selectedRepo)
+        setOpen(!open)
         setTimeout(() => {
             window.location.reload()
-        }, 2000);
+        }, 3000);
     }
 
     useEffect(() => {
@@ -78,8 +81,16 @@ const RepoListing = () => {
                                 </PopoverContent>
                             }
                         </Popover>
-
                         <ModalComponent isOpen={isOpen} onClose={onClose} onRemove={onRemove} onAdd={onAdd} />
+                        <Modal isOpen={open}>
+                            <ModalOverlay />
+                            <ModalContent p={5}>
+                                <ModalCloseButton onClick={() => setOpen(!open)} />
+                                <ModalBody>
+                                    <Text textAlign='center'>The Topic update takes a while to reflect on this app,...but you can as well check it out on the repository github page by clicking the "REPO GITHUB PAGE" button</Text>
+                                </ModalBody>
+                            </ModalContent>
+                        </Modal>
                     </Flex>
                     <Flex h='85%' overflowY='scroll' scrollBehavior='smooth' direction='column' sx={{
                         '&::-webkit-scrollbar': {

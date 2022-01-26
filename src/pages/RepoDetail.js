@@ -1,5 +1,5 @@
-import { Box, Button, Container, Flex, Image, Link, Spinner, Text, useColorModeValue, useDisclosure, useMediaQuery } from '@chakra-ui/react'
-import React, { useEffect } from 'react';
+import { Box, Button, Container, Flex, Image, Link, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Spinner, Text, useColorModeValue, useDisclosure, useMediaQuery } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ModalComponent from '../components/Modal';
@@ -8,6 +8,7 @@ import Fade from 'react-reveal/Fade'
 import Bounce from 'react-reveal/Bounce'
 import { updateRepoTopic } from '../services/utility';
 import { TOKEN } from '../App';
+import AlertModel from '../components/AlertModal';
 
 const RepoDetail = () => {
     const [isLargerThan653] = useMediaQuery('(min-width: 653px)')
@@ -18,18 +19,20 @@ const RepoDetail = () => {
     const accessToken = localStorage.getItem(TOKEN)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoaded = useSelector(getLoader);
+    const [open, setOpen] = useState(false)
     const repo = useSelector(getRepo)
-    console.log(repo)
     const { name, description, topics, html_url } = repo
 
     const onRemove = (topics) => {
         onClose()
         updateRepoTopic(topics, 'remove', accessToken, [repo])
+        setOpen(!open)
     }
 
     const onAdd = (topics) => {
         onClose();
         updateRepoTopic(topics, 'add', accessToken, [repo])
+        setOpen(!open)
     }
 
     useEffect(() => {
@@ -92,6 +95,16 @@ const RepoDetail = () => {
                                 </Button>
                             </Flex>
                             <ModalComponent isOpen={isOpen} onClose={onClose} onRemove={onRemove} onAdd={onAdd} />
+                            {/* <AlertModel open={open}/> */}
+                            <Modal isOpen={open}>
+                                <ModalOverlay />
+                                <ModalContent p={5}>
+                                    <ModalCloseButton onClick={() => setOpen(!open)} />
+                                    <ModalBody>
+                                        <Text textAlign='center'>The Topic update takes a while to reflect on this app,...but you can as well check it out on the repository github page by clicking the "REPO GITHUB PAGE" button</Text>
+                                    </ModalBody>
+                                </ModalContent>
+                            </Modal>
                         </Flex>
                         <>
                             {isLargerThan653 && <Box alignItems='center' padding='50px' w='50%' h='100%'>
