@@ -14,4 +14,4 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 *  [Chakra UI](https://chakra-ui.com/)  
 *  [Firebase](https://console.firebase.google.com/)
 
-Here is the [live link](https://github-topic-manager.web.app/) to the project.
+Here is the [live link](https://github-topic-manager.netlify.app/) to the project.
