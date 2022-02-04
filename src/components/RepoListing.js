@@ -54,7 +54,6 @@ const RepoListing = () => {
 
     useEffect(() => {
         dispatch(fetchAsyncRepos(accessToken))
-        console.log('useEffect')
         return () => { }
     }, [dispatch, accessToken])
 

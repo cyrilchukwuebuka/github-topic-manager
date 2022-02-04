@@ -11,19 +11,16 @@ const initialState = {
 export const fetchAsyncRepos = createAsyncThunk('githubUser/fetchAsyncRepos', async (accessToken) => {
     const octokit = await initOctokit(accessToken);
     const data = await octokit.paginate(octokit.rest.repos.listForAuthenticatedUser, { sort: 'created' });
-    console.log(data)
 
     return data
 })
 
 export const fetchAsyncRepo = createAsyncThunk('githubUser/fetchAsyncRepo', async ({ accessToken, owner, repoName }) => {
-    console.log(accessToken, owner, repoName)
     const octokit = await initOctokit(accessToken);
     const { data } = await octokit.rest.repos.get({
         owner: owner,
         repo: repoName,
     });
-    console.log(data)
 
     return data
 })
@@ -62,7 +59,6 @@ const githubUserSlice = createSlice({
             state.isLoaded = true;
         },
         [fetchAsyncRepos.rejected]: (state, { payload }) => {
-            console.log('rejected')
         }
     }
 });

@@ -8,7 +8,6 @@ import Fade from 'react-reveal/Fade'
 import Bounce from 'react-reveal/Bounce'
 import { updateRepoTopic } from '../services/utility';
 import { TOKEN } from '../App';
-import AlertModel from '../components/AlertModal';
 
 const RepoDetail = () => {
     const [isLargerThan653] = useMediaQuery('(min-width: 653px)')
