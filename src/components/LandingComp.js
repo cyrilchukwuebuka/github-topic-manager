@@ -34,7 +34,7 @@ const LandingComp = () => {
                         <Text textAlign='center' fontStyle='italic' fontSize={{ base: '14px', md: '16px', lg: '18px' }}>Another Great Day To Create Splendid Topics...</Text>
                         <Text textAlign='center' fontSize={{ base: '14px', md: '16px', lg: '18px' }}>Why not hop in let's get it started...😊</Text>
                     </Flex>
-                    <Text fontSize={{ base: '14px', md: '16px', lg: '18px' }} textAlign='center'>Click on <Link as={ReactLink} to='/sejd' _hover={{ color: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }} fontStyle='italic' fontSize={{ base: '16px', md: '18px', lg: '20px' }} fontWeight='500'>How It Works</Link> for additional information</Text>
+                    <Text fontSize={{ base: '14px', md: '16px', lg: '18px' }} textAlign='center'>Click on <Link as={ReactLink} to='/how-it-works' _hover={{ color: 'brand.300', textDecoration: 'none' }} _focus={{ outline: 'none' }} fontStyle='italic' fontSize={{ base: '16px', md: '18px', lg: '20px' }} fontWeight='500'>How It Works</Link> for additional information</Text>
                     <Button h={{ base: '36px', md: '40px', lg: '40px' }} w={{ base: '76px', md: '80px', lg: '80px' }} _hover={{ bg: 'brand.300' }} _active={{ transform: 'scale(1.05)' }} _focus={{ outline: 'none' }} m={5} textTransform='uppercase' bgColor='brand.500' color='white' onClick={() => firebaseSignInWithPopup(dispatch)}>
                         <Text fontSize='14px'>Login</Text>
                     </Button>
