@@ -71,7 +71,7 @@ const DrawerCompenent = ({ isOpen, onClose, accessToken }) => {
                 <DrawerBody>
                     <Fade top>
                         <Box mb='10px' _hover={{ transform: 'scale(1.02)', cursor: "pointer" }}>
-                            <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }} fontWeight='500'>How It Works</Link>
+                            <Link as={ReactLink} to='/how-it-works' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none' }} fontWeight='500'>How It Works</Link>
                         </Box>
                     </Fade>
                     <Fade right>
