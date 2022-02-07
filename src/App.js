@@ -13,6 +13,7 @@ import Header from './components/Header';
 import Home from './pages/Home';
 import PageNotFound from './pages/PageNotFound';
 import RepoDetail from './pages/RepoDetail';
+import HowItWorks from './pages/HowItWorks';
 
 export const TOKEN = 'token';
 
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<Layout />}>
                 <Route index element={<Home />} />
                 <Route path='repo/:repoID' element={<RepoDetail />} />
+                <Route path='how-it-works' element={<HowItWorks />} />
                 <Route path='*' element={<PageNotFound />} />
               </Route>
             </Routes>

@@ -44,7 +44,7 @@ const Header = () => {
             </Box>
             <Flex h='full' w='40%' align="center" justify="space-between">
                 <Flex w='90%' align="center" justify="space-between">
-                    {isLargerThan770 && <Link as={ReactLink} to='/' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} fontWeight='500' fontSize={{ base: '12px', md: '14px', lg: '16px' }}>How It Works</Link>}
+                    {isLargerThan770 && <Link as={ReactLink} to='/how-it-works' _focus={{ outline: 'none' }} _hover={{ textDecoration: 'none', transform: 'scale(1.05)' }} fontWeight='500' fontSize={{ base: '12px', md: '14px', lg: '16px' }}>How It Works</Link>}
                     {isLargerThan400 && <Text _hover={{ transform: 'scale(1.05)', cursor: "pointer" }} fontWeight='500' fontSize={{ base: '12px', md: '14px', lg: '16px' }} onClick={accessToken ? () => firebaseSignOut(dispatch) : () => firebaseSignInWithPopup(dispatch)}>{accessToken ? 'Log out' : 'Login'}</Text>}
                     {isLargerThan500 && <Link mt={2} href='https://github.com/cyrilchukwuebuka/github-topic-manager' isExternal _focus={{ outline: 'none' }}><Icon as={BiGitBranch} w={{ base: '18px', md: '20px', lg: '22px' }} h={{ base: '18px', md: '20px', lg: '22px' }} color={iconColor} _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} /></Link>}
                     <Icon as={icon} onClick={toggleColorMode} mx={1} w={{ base: '18px', md: '20px', lg: '22px' }} h={{ base: '18px', md: '20px', lg: '22px' }} color={iconColor} _hover={{ transform: 'scale(1.15)', cursor: "pointer" }} />

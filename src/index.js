@@ -18,11 +18,13 @@ const theme = extendTheme({
     },
     themeLight: {
       bg: 'white',
+      textColor: 'black',
       icon: '#6C63FF',
       logo: '#36328A'
     },
     themeDark: {
       bg: '#1A202C',
+      textColor: 'white',
       bgBody: '#032033',
       icon: 'white',
       logo: 'white'

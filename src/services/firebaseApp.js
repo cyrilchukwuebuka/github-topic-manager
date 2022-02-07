@@ -19,7 +19,7 @@ const auth = getAuth();
 
 // instantiate github auth provider
 const githubProvider = new GithubAuthProvider();
-githubProvider.addScope('repo');
+githubProvider.addScope('public_repo');
 githubProvider.setCustomParameters({
     'allow_signup': 'false'
 });
