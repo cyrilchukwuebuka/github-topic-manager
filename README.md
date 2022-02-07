@@ -12,6 +12,7 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 *  [React-redux (Redux-toolkit)](https://redux-toolkit.js.org/)
 *  [React Reveal](https://www.react-reveal.com/)
 *  [Chakra UI](https://chakra-ui.com/)  
-*  [Firebase](https://console.firebase.google.com/)
+*  [Firebase Oauth](https://console.firebase.google.com/)
+*  [Netlify](https://www.netlify.com/)
 
 Here is the [live link](https://github-topic-manager.netlify.app/) to the project.
