@@ -40,7 +40,7 @@ const Footer = () => {
                     </Link>
                 </Box>
                 <Box paddingRight='10px' _hover={{ transform: 'scale(1.05)', cursor: "pointer" }}>
-                    <Link href='www.linkedin.com/in/chukwuebuka-cyril-muofunanya' isExternal _focus={{ outline: 'none' }}>
+                    <Link href='https://linkedin.com/in/chukwuebuka-cyril-muofunanya' isExternal _focus={{ outline: 'none' }}>
                         <Icon as={BsLinkedin} color={bgLinkedIn} w={{ base: '12px', md: '13px', lg: '14px' }} h={{ base: '12px', md: '13px', lg: '14px' }} />
                     </Link>
                 </Box>
