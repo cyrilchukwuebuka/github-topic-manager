@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
 import { store } from './features/store';
-import { extendTheme } from "@chakra-ui/react";
+import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
@@ -20,17 +19,17 @@ const theme = extendTheme({
       bg: 'white',
       textColor: 'black',
       icon: '#6C63FF',
-      logo: '#36328A'
+      logo: '#36328A',
     },
     themeDark: {
       bg: '#1A202C',
       textColor: 'white',
       bgBody: '#032033',
       icon: 'white',
-      logo: 'white'
-    }
-  }
-})
+      logo: 'white',
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
@@ -40,7 +39,7 @@ ReactDOM.render(
       </ChakraProvider>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change
