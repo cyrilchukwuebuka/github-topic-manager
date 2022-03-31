@@ -4,13 +4,13 @@ import { addUser } from '../features/githubUser/githubUserSlice';
 import { TOKEN } from '../App';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyB2Bb7A0XludPb4wVKKgJKO7zW4KKa-s1A",
-    authDomain: "github-topic-manager.firebaseapp.com",
-    projectId: "github-topic-manager",
-    storageBucket: "github-topic-manager.appspot.com",
-    messagingSenderId: "287141083725",
-    appId: "1:287141083725:web:1c7b8ccf16027de048ba04",
-    measurementId: "G-7CXY30GLD9"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 // Initialize Firebase
