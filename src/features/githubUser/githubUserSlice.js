@@ -28,7 +28,7 @@ export const fetchAsyncRepo = createAsyncThunk('githubUser/fetchAsyncRepo', asyn
 const githubUserSlice = createSlice({
     name: 'githubUser',
     initialState,
-    reducers: {
+    reducers: { 
         addUser: (state, { payload }) => {
             state.userData = payload;
         },

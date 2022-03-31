@@ -45,3 +45,4 @@ const LandingComp = () => {
 }
 
 export default LandingComp
+
