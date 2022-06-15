@@ -1,0 +1,56 @@
+{
+  "defaultSeverity": "warning",
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  },
+  "rules": {
+    "no-object-literal-type-assertion": false,
+    "no-submodule-imports": false,
+    "semicolon": false,
+    "no-console": [false],
+    "callable-types": true,
+    "interface-name": [false],
+    "interface-over-type-literal": true,
+    "member-ordering": [
+      true,
+      {
+        "order": [
+          "public-before-private",
+          "static-before-instance",
+          "variables-before-functions"
+        ]
+      }
+    ],
+
+    "member-access": false,
+    "ordered-imports": [false, {}],
+    "max-line-length": [false],
+    "object-literal-sort-keys": false,
+    "no-angle-bracket-type-assertion": true,
+    "no-empty-interface": false,
+    "no-string-throw": true,
+    "no-switch-case-fall-through": true,
+    "prefer-const": true,
+    "switch-default": false,
+    "no-implicit-dependencies": false,
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "check-format",
+      "allow-leading-underscore",
+      "allow-pascal-case"
+    ],
+    "arrow-parens": false,
+    "jsx-no-lambda": false,
+    "jsx-boolean-value": false,
+    "no-empty": false
+  },
+  "jsRules": {
+    "object-literal-sort-keys": false
+  }
+}

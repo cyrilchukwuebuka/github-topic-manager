@@ -1,8 +1,15 @@
 import { Checkbox, Flex, Link, Text } from '@chakra-ui/react'
-import React from 'react'
+import React, { FC } from 'react'
 import { Link as ReactLink } from 'react-router-dom'
 
-const RepoCard = ({ name, id, repo, callback }) => {
+interface RepoCardProps {
+    name: string,
+    id: string | number,
+    repo: any,
+    callback: (repo: any) => void
+}
+
+const RepoCard: FC<RepoCardProps> = ({ name, id, repo, callback }) => {
     return (
         <Flex direction='column'>
             <Flex p='5' borderWidth='1px' rounded='md' textTransform='uppercase' justifyContent='space-between'>

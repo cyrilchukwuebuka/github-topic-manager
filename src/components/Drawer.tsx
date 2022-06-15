@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC } from 'react'
 import {
     Drawer,
     DrawerBody,
@@ -28,7 +28,13 @@ import { FaInstagram } from 'react-icons/fa';
 import { BsLinkedin, BsTwitter } from 'react-icons/bs';
 import Fade from 'react-reveal/Fade'
 
-const DrawerCompenent = ({ isOpen, onClose, accessToken }) => {
+type DrawerCompenentProps = {
+    isOpen: boolean,
+    onClose: () => void,
+    accessToken: string
+}
+
+const DrawerCompenent: FC<DrawerCompenentProps> = ({ isOpen, onClose, accessToken }) => {
     const dispatch = useDispatch();
     const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
     const logoColor = useColorModeValue('themeLight.logo', 'themeDark.logo')
@@ -114,4 +120,4 @@ const DrawerCompenent = ({ isOpen, onClose, accessToken }) => {
     )
 }
 
-export default DrawerCompenent
+export default DrawerCompenent;

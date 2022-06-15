@@ -1,9 +1,9 @@
 import { Box, Button, Flex, Image, Link, Text, useMediaQuery } from '@chakra-ui/react'
-import React from 'react'
+import React, { FC } from 'react'
 import { Link as ReactLink } from 'react-router-dom'
 import Bounce from 'react-reveal/Bounce'
 
-const PageNotFound = () => {
+const PageNotFound: FC<{}> = () => {
     const [isLargerThan600] = useMediaQuery('(min-width: 600px)')
 
     return (
@@ -37,17 +37,4 @@ const PageNotFound = () => {
     )
 }
 
-export default PageNotFound
-
-
-// <Flex Container>
-// Voodooo Lord <To be written beneath the vodoMaster Image>
-
-// Oops!!!...
-// Welcome to the lost Multi-Verse
-// I noticed you've lost track of path
-// If you still wish to find your path,
-// Click the below button
-
-// Conjure Path <Button Component>
-// <Flex Container>
+export default PageNotFound;

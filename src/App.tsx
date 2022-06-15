@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Route, BrowserRouter as Router, Routes, Outlet } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebaseApp';
@@ -17,7 +17,7 @@ import HowItWorks from './pages/HowItWorks';
 
 export const TOKEN = 'token';
 
-function App() {
+const App: FC<{}> = () => {
   const dispatch = useDispatch();
   const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
   const [isLargerThan310] = useMediaQuery('(min-width: 310px)')
@@ -66,7 +66,7 @@ function App() {
 
 export default App;
 
-const Layout = () => {
+const Layout: FC<{}> = () => {
   return (
     <>
       <Header />

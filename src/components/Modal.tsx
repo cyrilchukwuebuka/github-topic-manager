@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { FC, MutableRefObject, useRef } from 'react'
 import {
     Modal,
     ModalOverlay,
@@ -13,8 +13,15 @@ import {
     Text,
 } from '@chakra-ui/react'
 
-const ModalComponent = ({ isOpen, onClose, onRemove, onAdd }) => {
-    const focus = useRef()
+interface ModalComponentProps {
+    isOpen: boolean,
+    onClose: () => void,
+    onRemove: (value?: string) => void,
+    onAdd: (value?: string) => void
+}
+
+const ModalComponent: FC<ModalComponentProps> = ({ isOpen, onClose, onRemove, onAdd }) => {
+    const focus: MutableRefObject<HTMLInputElement | null> = useRef(null)
 
     return (
         <Modal closeOnOverlayClick={false} initialFocusRef={focus} isOpen={isOpen} onClose={onClose}>

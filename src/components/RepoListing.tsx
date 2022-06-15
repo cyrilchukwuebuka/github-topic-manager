@@ -1,13 +1,13 @@
-import { Button, Container, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, useDisclosure } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import { Button, Container, Flex, Modal, ModalBody, ModalCloseButton, ModalContent, ModalOverlay, Popover, PopoverArrow, PopoverBody, PopoverContent, PopoverTrigger, Spinner, Text, useDisclosure } from '@chakra-ui/react';
+import React, { FC, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Fade from 'react-reveal/Fade';
 import { fetchAsyncRepos, getLoader, getRepos, getUserData } from '../features/githubUser/githubUserSlice';
+import { updateRepoTopic } from '../services/utility';
 import ModalComponent from './Modal';
 import RepoCard from './RepoCard';
-import Fade from 'react-reveal/Fade'
-import { updateRepoTopic } from '../services/utility';
 
-const RepoListing = () => {
+const RepoListing: FC<{}> = () => {
     const accessToken = useSelector(getUserData)?.token;
     const dispatch = useDispatch();
     const isLoaded = useSelector(getLoader);
@@ -121,4 +121,4 @@ const RepoListing = () => {
     </>
 }
 
-export default RepoListing
+export default RepoListing;

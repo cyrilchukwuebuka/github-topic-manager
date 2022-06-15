@@ -14,21 +14,21 @@ const RepoDetail = () => {
     const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
     const dispatch = useDispatch()
     const { repoID } = useParams();
-    const [owner, id, repoName] = repoID.match(/[a-z-_]+|[0-9]+/ig)
-    const accessToken = localStorage.getItem(TOKEN)
+    const [owner, _, repoName] = repoID?.match(/[a-z-_]+|[0-9]+/ig) as RegExpMatchArray;
+    const accessToken = localStorage.getItem(TOKEN) || '';
     const { isOpen, onOpen, onClose } = useDisclosure()
     const isLoaded = useSelector(getLoader);
     const [open, setOpen] = useState(false)
     const repo = useSelector(getRepo)
     const { name, description, topics, html_url } = repo
 
-    const onRemove = (topics) => {
+    const onRemove = (topics?: string) => {
         onClose()
         updateRepoTopic(topics, 'remove', accessToken, [repo])
         setOpen(!open)
     }
 
-    const onAdd = (topics) => {
+    const onAdd = (topics?: string) => {
         onClose();
         updateRepoTopic(topics, 'add', accessToken, [repo])
         setOpen(!open)
@@ -70,7 +70,7 @@ const RepoDetail = () => {
                                         },
                                     }}>
                                         {
-                                            (topics?.map((topic, index) => (
+                                            (topics?.map((topic: string, index: number) => (
                                                 <Fade bottom>
                                                     <Button key={index} marginEnd='10px' marginBottom='10px'>
                                                         <Text fontSize={{ base: '11px', md: '13px', lg: '16px' }}>{topic}</Text>
@@ -130,4 +130,4 @@ const RepoDetail = () => {
     )
 }
 
-export default RepoDetail
+export default RepoDetail;

@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { useSelector } from 'react-redux';
 import LandingComp from '../components/LandingComp';
 import RepoListing from '../components/RepoListing';
 import { getUserData } from '../features/githubUser/githubUserSlice';
 
-const Home = () => {
+const Home: FC<{}> = () => {
     const accessToken = useSelector(getUserData)?.token;
 
     let render = accessToken ? (
@@ -18,4 +18,4 @@ const Home = () => {
     </>
 }
 
-export default Home
+export default Home;

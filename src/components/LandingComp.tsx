@@ -1,12 +1,12 @@
-import { Box, Button, Container, Flex, Image, Link, Text, useMediaQuery } from '@chakra-ui/react'
-import React from 'react'
+import React, { FC } from 'react'
+import { Box, Button, Container, Flex, Image, Link, Text } from '@chakra-ui/react'
+import Tilt from 'react-parallax-tilt'
 import { useDispatch } from 'react-redux'
+import Bounce from 'react-reveal/Bounce'
 import { Link as ReactLink } from "react-router-dom"
 import { firebaseSignInWithPopup } from '../services/firebaseApp'
-import Tilt from 'react-parallax-tilt'
-import Bounce from 'react-reveal/Bounce'
 
-const LandingComp = () => {
+const LandingComp: FC<{}> = () => {
     const dispatch = useDispatch()
 
     return (
@@ -44,4 +44,4 @@ const LandingComp = () => {
     )
 }
 
-export default LandingComp
+export default LandingComp;

@@ -1,18 +1,17 @@
-import React, { useState } from 'react'
-import { firebaseSignInWithPopup, firebaseSignOut } from '../services/firebaseApp';
-import { getUserData } from '../features/githubUser/githubUserSlice';
-import { Box, Flex, HStack, Icon, Image, Link, LinkBox, Text, VStack, LinkOverlay, useDisclosure, useMediaQuery, } from '@chakra-ui/react';
-import { VscGithub } from 'react-icons/vsc';
+import React, { FC } from 'react';
+import { HamburgerIcon } from '@chakra-ui/icons';
+import { Box, Flex, HStack, Icon, Image, Link, LinkBox, LinkOverlay, Text, useColorMode, useColorModeValue, useDisclosure, useMediaQuery, VStack } from '@chakra-ui/react';
 import { BiGitBranch, BiMoon } from 'react-icons/bi';
 import { ImSun } from 'react-icons/im';
-import { useDispatch, useSelector } from 'react-redux';
-import { HamburgerIcon } from '@chakra-ui/icons'
-import { useColorMode, useColorModeValue } from '@chakra-ui/react';
-import { Link as ReactLink } from "react-router-dom";
+import { VscGithub } from 'react-icons/vsc';
 import Tilt from 'react-parallax-tilt';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link as ReactLink } from "react-router-dom";
+import { getUserData } from '../features/githubUser/githubUserSlice';
+import { firebaseSignInWithPopup, firebaseSignOut } from '../services/firebaseApp';
 import DrawerCompenent from './Drawer';
 
-const Header = () => {
+const Header: FC<{}> = () => {
     const [isLargerThan770] = useMediaQuery('(min-width: 770px)')
     const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
     const [isLargerThan400] = useMediaQuery('(min-width: 400px)')
@@ -64,4 +63,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;

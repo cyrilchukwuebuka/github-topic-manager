@@ -1,11 +1,10 @@
-import { Box, Flex, Icon, Image, Text, useColorMode, useColorModeValue, useMediaQuery } from '@chakra-ui/react'
+import React, { FC } from 'react'
+import { Box, Flex, Icon, Image, Link, Text, useColorModeValue } from '@chakra-ui/react'
+import { BsLinkedin, BsTwitter } from 'react-icons/bs'
 import { FaInstagram } from 'react-icons/fa'
-import { BsTwitter, BsLinkedin } from 'react-icons/bs'
-import React from 'react'
-import { Link } from '@chakra-ui/react'
 import { VscGithub } from 'react-icons/vsc'
 
-const Footer = () => {
+const Footer: FC<{}> = () => {
     const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
     const bgInstagram = useColorModeValue('red', 'white')
     const bgGithub = useColorModeValue('black', 'white')
@@ -49,4 +48,4 @@ const Footer = () => {
     )
 }
 
-export default Footer
+export default Footer;

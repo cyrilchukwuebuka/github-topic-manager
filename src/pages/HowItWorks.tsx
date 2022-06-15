@@ -1,9 +1,8 @@
-import { Box, Flex, Text, useColorMode, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Flex, Text, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
+import React, { FC } from 'react';
 
-const HowItWorks = () => {
+const HowItWorks: FC<{}> = () => {
     const [isLargerThan653] = useMediaQuery('(min-width: 653px)')
-    const { toggleColorMode } = useColorMode()
     const bgColor = useColorModeValue('themeLight.textColor', 'themeDark.textColor')
 
     return (
