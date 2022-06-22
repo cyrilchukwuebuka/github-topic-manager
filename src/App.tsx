@@ -1,19 +1,17 @@
 import React, { FC, useEffect } from 'react';
-import { Route, BrowserRouter as Router, Routes, Outlet } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebaseApp';
-import { addUser, deleteUser } from './features/githubUser/githubUserSlice';
+import { addUser, deleteUser } from './globalState/githubUser/githubUserSlice';
 import { useDispatch } from 'react-redux';
 import { Container, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { useMediaQuery } from '@chakra-ui/react'
-// component import
 import './App.css';
-import Footer from './components/Footer';
-import Header from './components/Header';
 import Home from './pages/Home';
 import PageNotFound from './pages/PageNotFound';
 import RepoDetail from './pages/RepoDetail';
 import HowItWorks from './pages/HowItWorks';
+import Layout from './components/Layout';
 
 export const TOKEN = 'token';
 
@@ -25,7 +23,6 @@ const App: FC<{}> = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {
-        console.log('user deleted')
         localStorage.removeItem(TOKEN);
         dispatch(deleteUser())
       } else {
@@ -66,14 +63,3 @@ const App: FC<{}> = () => {
 
 export default App;
 
-const Layout: FC<{}> = () => {
-  return (
-    <>
-      <Header />
-      <main className='app__container'>
-        <Outlet />
-      </main>
-      <Footer />
-    </>
-  );
-}

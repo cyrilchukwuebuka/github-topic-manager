@@ -5,4 +5,8 @@ declare global {
     __WB_MANIFEST?: any;
     skipWaiting: () => any;
   }
+  // interface ProcessEnv {
+  //   [key: string]: string | undefined
+  // }
 }
+

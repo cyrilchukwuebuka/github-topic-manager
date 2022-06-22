@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { useSelector } from 'react-redux';
-import LandingComp from '../components/LandingComp';
-import RepoListing from '../components/RepoListing';
-import { getUserData } from '../features/githubUser/githubUserSlice';
+import LandingComp from '../../components/LandingComp';
+import RepoListing from '../../components/RepoListing';
+import { getUserData } from '../../globalState/githubUser/githubUserSlice';
 
 const Home: FC<{}> = () => {
     const accessToken = useSelector(getUserData)?.token;
