@@ -31,6 +31,7 @@ import Bounce from "react-reveal/Bounce";
 import { updateRepoTopic } from "../../services/utility";
 import { TOKEN } from "../../App";
 import { AppDispatch } from "../../globalState/reducerTypes";
+import { CreateRepoResponseType } from "src/services/githubOctokit";
 
 const RepoDetail = () => {
   const [isLargerThan653] = useMediaQuery("(min-width: 653px)");
@@ -44,11 +45,8 @@ const RepoDetail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isLoaded = useSelector(getLoader);
   const [open, setOpen] = useState(false);
-  const repo = useSelector(getRepo);
+  const repo: Partial<CreateRepoResponseType['data']> = useSelector(getRepo);
   console.log(repo)
-  const { name, description, topics, html_url } = repo;
-
-  console.log(name, description, topics, html_url)
 
   const onRemove = (topics?: string) => {
     onClose();
@@ -71,7 +69,7 @@ const RepoDetail = () => {
 
   return (
     <>
-      {isLoaded ? (
+      {isLoaded && Object.values(repo).length !== 0 ? (
         <Flex
           wrap="wrap-reverse"
           w="100%"
@@ -101,17 +99,17 @@ const RepoDetail = () => {
                   fontSize={{ base: "21px", md: "26px", lg: "30px" }}
                   textAlign="center"
                 >
-                  {name}
+                  {repo.name}
                 </Text>
               </Box>
-              {description !== null ? (
+              {repo.description ? (
                 <Box>
                   <Text
                     h="20%"
                     textAlign="center"
                     fontSize={{ base: "11px", md: "13px", lg: "16px" }}
                   >
-                    {description}
+                    {repo.description}
                   </Text>
                 </Box>
               ) : (
@@ -131,7 +129,7 @@ const RepoDetail = () => {
                 >
                   Topics
                 </Text>
-                {topics?.length !== 0 ? (
+                {repo.topics.length ? (
                   <Flex
                     h="70%"
                     p={5}
@@ -152,7 +150,7 @@ const RepoDetail = () => {
                       },
                     }}
                   >
-                    {topics?.map((topic: string, index: number) => (
+                    {repo.topics.map((topic: string, index: number) => (
                       <Fade bottom>
                         <Button
                           key={index}
@@ -203,7 +201,7 @@ const RepoDetail = () => {
               >
                 <Link
                   isExternal
-                  href={html_url}
+                  href={repo.html_url}
                   _focus={{ outline: "none" }}
                   _hover={{ textDecoration: "none" }}
                 >
