@@ -1,10 +1,24 @@
 import {
-  Box, Button, Drawer,
-  DrawerBody, DrawerContent, DrawerFooter,
+  Box,
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerFooter,
   DrawerHeader,
-  DrawerOverlay, Flex, HStack, Icon, Image, Link, LinkBox, LinkOverlay, Text, useColorModeValue, VStack
+  DrawerOverlay,
+  Flex,
+  HStack,
+  Icon,
+  Image,
+  Link,
+  LinkBox,
+  LinkOverlay,
+  Text,
+  useColorModeValue,
+  VStack
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import { BsLinkedin, BsTwitter } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
@@ -17,6 +31,7 @@ import {
   firebaseSignInWithPopup,
   firebaseSignOut
 } from "../../services/firebaseApp";
+import DrawerFooterLink from "../Link/DrawerFooterLink";
 
 type DrawerCompenentProps = {
   isOpen: boolean;
@@ -36,6 +51,32 @@ const DrawerCompenent: FC<DrawerCompenentProps> = ({
   const bgGithub = useColorModeValue("black", "white");
   const bgLinkedIn = useColorModeValue("#0077b5", "white");
   const bgTwitter = useColorModeValue("#1DA1F2", "white");
+
+  const FooterLinkData = useMemo(
+    () => [
+      {
+        href: "https://github.com/cyrilchukwuebuka",
+        iconAs: VscGithub,
+        bg: bgGithub,
+      },
+      {
+        href: "https://www.instagram.com/chuk_cy/?hl=en",
+        iconAs: FaInstagram,
+        bg: bgInstagram,
+      },
+      {
+        href: "https://twitter.com/hooolycode",
+        iconAs: BsTwitter,
+        bg: bgTwitter,
+      },
+      {
+        href: "https://linkedin.com/in/chukwuebuka-cyril-muofunanya",
+        iconAs: BsLinkedin,
+        bg: bgLinkedIn,
+      },
+    ],
+    [bgGithub, bgInstagram, bgLinkedIn, bgTwitter]
+  );
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
@@ -140,54 +181,9 @@ const DrawerCompenent: FC<DrawerCompenentProps> = ({
             </Flex>
             <Text>Chukwuebuka Cyril Muofunanya</Text>
             <Flex align="center" justify="center" paddingRight="10px">
-              <Box
-                paddingRight="10px"
-                _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-              >
-                <Link
-                  href="https://github.com/cyrilchukwuebuka"
-                  isExternal
-                  _focus={{ outline: "none" }}
-                >
-                  <Icon as={VscGithub} color={bgGithub} />
-                </Link>
-              </Box>
-              <Box
-                paddingRight="10px"
-                _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-              >
-                <Link
-                  href="https://www.instagram.com/chuk_cy/?hl=en"
-                  isExternal
-                  _focus={{ outline: "none" }}
-                >
-                  <Icon as={FaInstagram} color={bgInstagram} />
-                </Link>
-              </Box>
-              <Box
-                paddingRight="10px"
-                _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-              >
-                <Link
-                  href="https://twitter.com/hooolycode"
-                  isExternal
-                  _focus={{ outline: "none" }}
-                >
-                  <Icon as={BsTwitter} color={bgTwitter} />
-                </Link>
-              </Box>
-              <Box
-                paddingRight="10px"
-                _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-              >
-                <Link
-                  href="www.linkedin.com/in/chukwuebuka-cyril-muofunanya"
-                  isExternal
-                  _focus={{ outline: "none" }}
-                >
-                  <Icon as={BsLinkedin} color={bgLinkedIn} />
-                </Link>
-              </Box>
+              {FooterLinkData.map((data) => (
+                <DrawerFooterLink href={data.href} iconAs={data.iconAs} bg={data.bg} />
+              ))}
             </Flex>
           </Flex>
         </DrawerFooter>

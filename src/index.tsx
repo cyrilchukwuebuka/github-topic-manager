@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import { ChakraProvider } from '@chakra-ui/react';
 import { Provider } from 'react-redux';
-import { store } from './globalState/store';
+import store from './globalState/store';
 import { extendTheme } from "@chakra-ui/react";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';

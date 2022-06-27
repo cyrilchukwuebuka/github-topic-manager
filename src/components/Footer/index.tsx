@@ -1,16 +1,13 @@
-import React, { FC } from "react";
 import {
   Box,
-  Flex,
-  Icon,
-  Image,
-  Link,
-  Text,
-  useColorModeValue,
+  Flex, Image, Text,
+  useColorModeValue
 } from "@chakra-ui/react";
+import React, { FC, useMemo } from "react";
 import { BsLinkedin, BsTwitter } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
+import FooterLink from "../Link/FooterLink";
 
 const Footer: FC<{}> = () => {
   const bgColor = useColorModeValue("themeLight.bg", "themeDark.bgBody");
@@ -18,6 +15,32 @@ const Footer: FC<{}> = () => {
   const bgGithub = useColorModeValue("black", "white");
   const bgLinkedIn = useColorModeValue("#0077b5", "white");
   const bgTwitter = useColorModeValue("#1DA1F2", "white");
+
+  const FooterLinkData = useMemo(
+    () => [
+      {
+        href: "https://github.com/cyrilchukwuebuka",
+        iconAs: VscGithub,
+        bg: bgGithub,
+      },
+      {
+        href: "https://www.instagram.com/chuk_cy/?hl=en",
+        iconAs: FaInstagram,
+        bg: bgInstagram,
+      },
+      {
+        href: "https://twitter.com/hooolycode",
+        iconAs: BsTwitter,
+        bg: bgTwitter,
+      },
+      {
+        href: "https://linkedin.com/in/chukwuebuka-cyril-muofunanya",
+        iconAs: BsLinkedin,
+        bg: bgLinkedIn,
+      },
+    ],
+    [bgGithub, bgInstagram, bgLinkedIn, bgTwitter]
+  );
 
   return (
     <Flex
@@ -54,74 +77,9 @@ const Footer: FC<{}> = () => {
         </Text>
       </Flex>
       <Flex align="center" justify="center" paddingRight="10px">
-        <Box
-          paddingRight="10px"
-          _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-        >
-          <Link
-            href="https://github.com/cyrilchukwuebuka"
-            isExternal
-            _focus={{ outline: "none" }}
-          >
-            <Icon
-              as={VscGithub}
-              color={bgGithub}
-              w={{ base: "12px", md: "13px", lg: "14px" }}
-              h={{ base: "12px", md: "13px", lg: "14px" }}
-            />
-          </Link>
-        </Box>
-        <Box
-          paddingRight="10px"
-          _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-        >
-          <Link
-            href="https://www.instagram.com/chuk_cy/?hl=en"
-            isExternal
-            _focus={{ outline: "none" }}
-          >
-            <Icon
-              as={FaInstagram}
-              color={bgInstagram}
-              w={{ base: "12px", md: "13px", lg: "14px" }}
-              h={{ base: "12px", md: "13px", lg: "14px" }}
-            />
-          </Link>
-        </Box>
-        <Box
-          paddingRight="10px"
-          _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-        >
-          <Link
-            href="https://twitter.com/hooolycode"
-            isExternal
-            _focus={{ outline: "none" }}
-          >
-            <Icon
-              as={BsTwitter}
-              color={bgTwitter}
-              w={{ base: "12px", md: "13px", lg: "14px" }}
-              h={{ base: "12px", md: "13px", lg: "14px" }}
-            />
-          </Link>
-        </Box>
-        <Box
-          paddingRight="10px"
-          _hover={{ transform: "scale(1.05)", cursor: "pointer" }}
-        >
-          <Link
-            href="https://linkedin.com/in/chukwuebuka-cyril-muofunanya"
-            isExternal
-            _focus={{ outline: "none" }}
-          >
-            <Icon
-              as={BsLinkedin}
-              color={bgLinkedIn}
-              w={{ base: "12px", md: "13px", lg: "14px" }}
-              h={{ base: "12px", md: "13px", lg: "14px" }}
-            />
-          </Link>
-        </Box>
+        {FooterLinkData.map((data) => (
+          <FooterLink href={data.href} iconAs={data.iconAs} bg={data.bg} />
+        ))}
       </Flex>
     </Flex>
   );
