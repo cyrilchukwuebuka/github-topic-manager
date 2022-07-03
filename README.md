@@ -1,4 +1,4 @@
-#### Version 2 (TypeScript GraphQL)
+#### Version 2 (TypeScript Rest API)
 
 # TOPIC MANAGER  
 This project streamlines the process of adding or removal of Topics by developers and github users to one or more github repositories.  
