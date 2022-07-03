@@ -12,7 +12,6 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 
 ## TECHNOLOGIES USED  
 *  [TypeScript](https://www.typescriptlang.org/)
-*  [GraphQl (Apollo GraphQl)](https://www.apollographql.com/)
 *  [GitHub Oauth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)  
 *  [React](https://reactjs.org/)  
 *  [React-redux (Redux-toolkit)](https://redux-toolkit.js.org/)
@@ -20,8 +19,6 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 *  [Chakra UI](https://chakra-ui.com/)  
 *  [Firebase Oauth](https://console.firebase.google.com/)
 *  [Netlify](https://www.netlify.com/)
-*  [Jest](https://facebook.github.io/jest/)
-*  [Enzyme](http://airbnb.io/enzyme/)
 
 Here is the [live link](https://github-topic-manager.netlify.app/) to the project.  
 
