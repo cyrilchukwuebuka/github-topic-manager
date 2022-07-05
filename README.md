@@ -13,6 +13,7 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 ## TECHNOLOGIES USED  
 *  [TypeScript](https://www.typescriptlang.org/)
 *  [GitHub Oauth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)  
+*  [Octokit/rest](https://github.com/octokit/rest.js)   
 *  [React](https://reactjs.org/)  
 *  [React-redux (Redux-toolkit)](https://redux-toolkit.js.org/)
 *  [React Reveal](https://www.react-reveal.com/)
@@ -27,7 +28,7 @@ Here is the [live link](https://github-topic-manager.netlify.app/) to the projec
 ### Prerequisites
 To be able to setup the project locally, you need to have the following installed and working properly:
 * [Nodejs](https://nodejs.org/en/)
-* NPM
+* NPM and Yarn
 * [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)  
 * [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
@@ -38,4 +39,4 @@ To be able to setup the project locally, you need to have the following installe
 * npm run start  
 
 ### Future Add on
-* create an Electron app version of the project
+* change from Rest API to GraphQL API consumption
