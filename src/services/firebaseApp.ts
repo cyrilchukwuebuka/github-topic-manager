@@ -5,7 +5,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { config } from "src/config/config";
+import config from "src/config/config";
 import { AppDispatch } from "src/globalState/reducerTypes";
 import { TOKEN } from "../App";
 import { addUser, deleteUser } from "../globalState/githubUser/githubUserSlice";

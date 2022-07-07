@@ -1,4 +1,4 @@
-export const config = {
+const config = {
   firebaseConfig: {
     apiKey: (process.env.REACT_APP_API_KEY as string),
     authDomain: (process.env.REACT_APP_AUTH_DOMAIN as string),
@@ -9,3 +9,5 @@ export const config = {
     measurementId: (process.env.REACT_APP_MEASUREMENT_ID as string),
   },
 };
+
+export default config;

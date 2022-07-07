@@ -1,4 +1,6 @@
-#### Version 2 (TypeScript GraphQL)
+#### Latest - Version 2 (TypeScript GraphQL)
+
+you can also checkout [v1-pro](https://github.com/cyrilchukwuebuka/github-topic-manager/tree/v1-pro) and [v1](https://github.com/cyrilchukwuebuka/github-topic-manager/tree/v1)
 
 # TOPIC MANAGER  
 This project streamlines the process of adding or removal of Topics by developers and github users to one or more github repositories.  
@@ -14,14 +16,13 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 *  [TypeScript](https://www.typescriptlang.org/)
 *  [GraphQl (Apollo GraphQl)](https://www.apollographql.com/)
 *  [GitHub Oauth App](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app)  
+*  [Octokit/graphql](https://github.com/octokit/graphql.js/)
 *  [React](https://reactjs.org/)  
 *  [React-redux (Redux-toolkit)](https://redux-toolkit.js.org/)
 *  [React Reveal](https://www.react-reveal.com/)
 *  [Chakra UI](https://chakra-ui.com/)  
 *  [Firebase Oauth](https://console.firebase.google.com/)
 *  [Netlify](https://www.netlify.com/)
-*  [Jest](https://facebook.github.io/jest/)
-*  [Enzyme](http://airbnb.io/enzyme/)
 
 Here is the [live link](https://github-topic-manager.netlify.app/) to the project.  
 
@@ -30,7 +31,7 @@ Here is the [live link](https://github-topic-manager.netlify.app/) to the projec
 ### Prerequisites
 To be able to setup the project locally, you need to have the following installed and working properly:
 * [Nodejs](https://nodejs.org/en/)
-* NPM
+* NPM and Yarn
 * [React Dev Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)  
 * [Redux Dev Tools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en)
 
@@ -42,3 +43,4 @@ To be able to setup the project locally, you need to have the following installe
 
 ### Future Add on
 * create an Electron app version of the project
+* create a test with [Jest](https://facebook.github.io/jest/) and [Enzyme](http://airbnb.io/enzyme/)

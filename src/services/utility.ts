@@ -1,6 +1,8 @@
-import initOctokit, { CreateRepoResponseType } from "./githubOctokit";
+import initOctokit from "./githubOctokit";
+import type { GraphQlQueryResponseData } from "@octokit/graphql";
+import OctokitGraphQLEndpoints from "src/api/graphqlApiEndpoints";
 
-type Repo = Partial<CreateRepoResponseType['data']>
+type Repo = GraphQlQueryResponseData;
 type FuncArgs = (accessToken: string, repo: Repo, topics: string[]) => void;
 
 const replaceTopicsInRepo = async (
@@ -8,28 +10,35 @@ const replaceTopicsInRepo = async (
   repo: Repo,
   topics: string[]
 ) => {
-  const octokit: ReturnType<typeof initOctokit> = initOctokit(
-    accessToken
+  if (topics.length === 0) topics = [""];
+  const octokit = initOctokit(accessToken);
+
+  console.log(repo.id, topics);
+
+  await new OctokitGraphQLEndpoints(octokit).updateTopicsMutation(
+    repo,
+    topics
   );
-  octokit.rest.repos.replaceAllTopics({
-    owner: repo!.owner!.login,
-    repo: repo.name as string,
-    names: topics,
-  });
 };
 
 const add = (accessToken: string, repo: Repo, topics: string[]) => {
-  let repoTopics = repo!.topics!.concat(topics);
+  const repoTopics = repo.repositoryTopics.edges
+    .map((topicNode: Repo) => topicNode.node.topic.name)
+    .concat(topics);
   replaceTopicsInRepo(accessToken, repo, repoTopics);
 };
 
 const remove = (accessToken: string, repo: Repo, topics: string[]) => {
-  let repoTopics = repo.topics !== undefined ? [...repo.topics] : []
+  const currentTopics = repo.repositoryTopics.edges.map(
+    (topicNode: Repo) => topicNode.node.topic.name
+  );
+  const repoTopics = currentTopics !== undefined ? [...currentTopics] : [];
   topics.forEach((topic) => {
-    let foundIndex = repoTopics.findIndex(
+    const foundIndex = repoTopics.findIndex(
       (item) => item.toString() === topic.toString()
     );
-    repoTopics.splice(foundIndex, 1);
+
+    foundIndex !== -1 && repoTopics.splice(foundIndex, 1);
   });
 
   replaceTopicsInRepo(accessToken, repo, repoTopics);

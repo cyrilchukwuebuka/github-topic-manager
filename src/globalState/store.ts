@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import githubUserReducer from "./githubUser/githubUserSlice";
 
-export const store = configureStore({
+const store = configureStore({
     reducer: {
         githubUsers: githubUserReducer
     }
 })
+
+export default store;
