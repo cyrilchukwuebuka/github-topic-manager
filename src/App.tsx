@@ -19,7 +19,7 @@ const App: FC<{}> = () => {
   const dispatch = useDispatch();
   const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
   const [isLargerThan310] = useMediaQuery('(min-width: 310px)')
-
+  
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (!user) {

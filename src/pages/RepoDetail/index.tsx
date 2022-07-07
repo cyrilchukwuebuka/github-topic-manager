@@ -31,7 +31,7 @@ import Bounce from "react-reveal/Bounce";
 import { updateRepoTopic } from "../../services/utility";
 import { TOKEN } from "../../App";
 import { AppDispatch } from "../../globalState/reducerTypes";
-import { CreateRepoResponseType } from "src/services/githubOctokit";
+import type { GraphQlQueryResponseData } from "@octokit/graphql";
 
 const RepoDetail = () => {
   const [isLargerThan653] = useMediaQuery("(min-width: 653px)");
@@ -45,8 +45,8 @@ const RepoDetail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const isLoaded = useSelector(getLoader);
   const [open, setOpen] = useState(false);
-  const repo: Partial<CreateRepoResponseType['data']> = useSelector(getRepo);
-  console.log(repo)
+  const repo: GraphQlQueryResponseData = useSelector(getRepo);
+  const repoTopics = repo?.repositoryTopics?.edges;
 
   const onRemove = (topics?: string) => {
     onClose();
@@ -129,7 +129,7 @@ const RepoDetail = () => {
                 >
                   Topics
                 </Text>
-                {repo.topics.length ? (
+                {repoTopics !== undefined ? (
                   <Flex
                     h="70%"
                     p={5}
@@ -150,7 +150,7 @@ const RepoDetail = () => {
                       },
                     }}
                   >
-                    {repo.topics.map((topic: string, index: number) => (
+                    {repoTopics.map((RepoTopic: Record<string, any>, index: number) => (
                       <Fade bottom>
                         <Button
                           key={index}
@@ -160,7 +160,7 @@ const RepoDetail = () => {
                           <Text
                             fontSize={{ base: "11px", md: "13px", lg: "16px" }}
                           >
-                            {topic}
+                            {RepoTopic.node.topic.name}
                           </Text>
                         </Button>
                       </Fade>
@@ -201,7 +201,7 @@ const RepoDetail = () => {
               >
                 <Link
                   isExternal
-                  href={repo.html_url}
+                  href={repo.url}
                   _focus={{ outline: "none" }}
                   _hover={{ textDecoration: "none" }}
                 >

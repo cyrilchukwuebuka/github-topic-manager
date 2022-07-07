@@ -14,30 +14,31 @@ import {
   PopoverTrigger,
   Spinner,
   Text,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { AppDispatch } from "src/globalState/reducerTypes";
-import { CreateRepoResponseType } from "src/services/githubOctokit";
+import type { GraphQlQueryResponseData } from "@octokit/graphql";
 import {
   fetchAsyncRepos,
   getLoader,
   getRepos,
-  getUserData
+  getUserData,
 } from "../../globalState/githubUser/githubUserSlice";
 import { updateRepoTopic } from "../../services/utility";
 import ModalComponent from "../Modal";
 import RepoCard from "../RepoCard";
 
-type Repo = Partial<CreateRepoResponseType["data"]>;
+type Repo = GraphQlQueryResponseData;
 
 const RepoListing: FC<{}> = () => {
   const accessToken = useSelector(getUserData)?.token;
   const dispatch = useDispatch<AppDispatch>();
   const isLoaded = useSelector(getLoader);
-  const repos: Repo[] = Object.values(useSelector(getRepos));
+  const repos: Repo = useSelector(getRepos)?.viewer?.repositories;
+  // const hasNext = repos?.pageInfo?.hasNextPage;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [open, setOpen] = useState(false);
   let [count, setCount] = useState(0);
@@ -58,7 +59,7 @@ const RepoListing: FC<{}> = () => {
     }
   };
 
-  const repoRender = repos.map((repo: Repo) => (
+  const repoRender = repos?.nodes.map((repo: Repo) => (
     <RepoCard
       key={repo.id}
       id={repo.id!}
@@ -70,7 +71,7 @@ const RepoListing: FC<{}> = () => {
 
   const onAdd = (topics?: string) => {
     onClose();
-    updateRepoTopic(topics ?? '', "add", accessToken, selectedRepo);
+    updateRepoTopic(topics ?? "", "add", accessToken, selectedRepo);
     setOpen(!open);
     setTimeout(() => {
       window.location.reload();
@@ -79,9 +80,9 @@ const RepoListing: FC<{}> = () => {
 
   const onRemove = (topics?: string) => {
     onClose();
-    updateRepoTopic(topics ?? '', "remove", accessToken, selectedRepo);
+    updateRepoTopic(topics ?? "", "remove", accessToken, selectedRepo);
     setOpen(!open);
-    setTimeout(() => { 
+    setTimeout(() => {
       window.location.reload();
     }, 3000);
   };
@@ -150,7 +151,7 @@ const RepoListing: FC<{}> = () => {
               onRemove={onRemove}
               onAdd={onAdd}
             />
-            <Modal isOpen={open} onClose={() => console.log('Modal closed')}>
+            <Modal isOpen={open} onClose={() => console.log("")}>
               <ModalOverlay />
               <ModalContent p={5}>
                 <ModalCloseButton onClick={() => setOpen(!open)} />
@@ -165,7 +166,7 @@ const RepoListing: FC<{}> = () => {
             </Modal>
           </Flex>
           <Flex
-            h="85%"
+            h="83%"
             overflowY="scroll"
             scrollBehavior="smooth"
             direction="column"

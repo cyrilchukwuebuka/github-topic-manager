@@ -99,7 +99,6 @@ const LandingComp: FC<{}> = () => {
             </Link>{" "}
             for additional information
           </Text>
-          {/* <Button h={{ base: '36px', md: '40px', lg: '40px' }} w={{ base: '76px', md: '80px', lg: '80px' }} _hover={{ bg: 'brand.300' }} _active={{ transform: 'scale(1.05)' }} _focus={{ outline: 'none' }} m={5} textTransform='uppercase' bgColor='brand.500' color='white' onClick={() => firebaseSignInWithPopup(dispatch)}> */}
           <Button
             h={{ base: "36px", md: "40px", lg: "40px" }}
             w={{ base: "76px", md: "80px", lg: "80px" }}
