@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { GraphQlQueryResponseData } from "@octokit/graphql";
 import initOctokit from "../../services/githubOctokit";
 import { RootState } from "../reducerTypes";
-import OctokitGraphQLEndpoints from "src/api/graphqlApiEndpoints";
+import OctokitGraphQLEndpoints from "../../api/graphqlApiEndpoints";
 
 interface AsyncThunkParameter {
   accessToken: string;
