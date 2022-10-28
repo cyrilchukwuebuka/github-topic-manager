@@ -106,8 +106,9 @@ const HowItWorks: FC<{}> = () => {
             },
           }}
         >
-          {Data.map((value) => (
+          {Data.map((value, i) => (
             <Flex
+              key={i}
               w="100%"
               mb="10px"
               px="5%"
