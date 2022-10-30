@@ -6,7 +6,18 @@ module.exports = {
   // Jest transformations -- this adds support for TypeScript
   // using ts-jest
   transform: {
-    "^.+\\.tsx?$": "ts-jest"
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+
+  "testEnvironment": "jsdom",
+
+  "testEnvironmentOptions": {
+    "browsers": [
+      "chrome",
+      "firefox",
+      "safari"
+    ]
   },
 
   // Runs special logic, such as cleaning up components

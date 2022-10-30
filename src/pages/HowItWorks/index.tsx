@@ -55,6 +55,7 @@ const HowItWorks: FC<{}> = () => {
           About
         </Text>
         <Text
+          id="about-message"
           mb="5%"
           maxW="90%"
           fontStyle="italic"

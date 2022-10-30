@@ -13,8 +13,6 @@ const replaceTopicsInRepo = async (
   if (topics.length === 0) topics = [""];
   const octokit = initOctokit(accessToken);
 
-  console.log(repo.id, topics);
-
   await new OctokitGraphQLEndpoints(octokit).updateTopicsMutation(
     repo,
     topics

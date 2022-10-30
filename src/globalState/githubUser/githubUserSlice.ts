@@ -83,7 +83,7 @@ const githubUserSlice = createSlice({
       state.isLoaded = true;
     });
     builder.addCase(fetchAsyncRepos.rejected, (state) => {
-      console.log(state);
+      // console.log(state);
     });
   },
 });

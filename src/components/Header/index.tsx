@@ -20,9 +20,8 @@ import { BiGitBranch, BiMoon } from "react-icons/bi";
 import { ImSun } from "react-icons/im";
 import { VscGithub } from "react-icons/vsc";
 import Tilt from "react-parallax-tilt";
-import { useDispatch, useSelector } from "react-redux";
 import { Link as ReactLink } from "react-router-dom";
-import { AppDispatch } from "src/globalState/reducerTypes";
+import { useAppDispatch, useAppSelector } from "src/globalState/stateHooks";
 import { getUserData } from "../../globalState/githubUser/githubUserSlice";
 import {
   firebaseSignInWithPopup,
@@ -39,9 +38,9 @@ const Header: FC<{}> = () => {
   const iconColor = useColorModeValue("themeLight.icon", "themeDark.icon");
   const logoColor = useColorModeValue("themeLight.logo", "themeDark.logo");
   const icon = useColorModeValue(BiMoon, ImSun);
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const userData = useSelector(getUserData).user;
+  const userData = useAppSelector(getUserData).user;
   const avatar = userData?.photoURL;
   const accessToken = userData?.accessToken;
 
