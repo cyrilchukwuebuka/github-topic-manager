@@ -54,6 +54,11 @@
     "test:watch": "react-scripts test --watchAll --detectOpenHandles",
     "eject": "react-scripts eject"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn run lint-staged && yarn test"
+    }
+  },
   "lint-staged": {
     "*": "prettier --write"
   },
