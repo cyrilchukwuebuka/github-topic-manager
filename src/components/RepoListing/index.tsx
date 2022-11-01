@@ -14,18 +14,17 @@ import {
   PopoverTrigger,
   Spinner,
   Text,
-  useDisclosure,
+  useDisclosure
 } from "@chakra-ui/react";
-import React, { FC, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Fade from "react-reveal/Fade";
-import { AppDispatch } from "src/globalState/reducerTypes";
 import type { GraphQlQueryResponseData } from "@octokit/graphql";
+import React, { FC, useEffect, useState } from "react";
+import Fade from "react-reveal/Fade";
+import { useAppDispatch, useAppSelector } from "src/globalState/stateHooks";
 import {
   fetchAsyncRepos,
   getLoader,
   getRepos,
-  getUserData,
+  getUserData
 } from "../../globalState/githubUser/githubUserSlice";
 import { updateRepoTopic } from "../../services/utility";
 import ModalComponent from "../Modal";
@@ -34,10 +33,10 @@ import RepoCard from "../RepoCard";
 type Repo = GraphQlQueryResponseData;
 
 const RepoListing: FC<{}> = () => {
-  const accessToken = useSelector(getUserData)?.token;
-  const dispatch = useDispatch<AppDispatch>();
-  const isLoaded = useSelector(getLoader);
-  const repos: Repo = useSelector(getRepos)?.viewer?.repositories;
+  const accessToken = useAppSelector(getUserData)?.token;
+  const dispatch = useAppDispatch();
+  const isLoaded = useAppSelector(getLoader);
+  const repos: Repo = useAppSelector(getRepos)?.viewer?.repositories;
   // const hasNext = repos?.pageInfo?.hasNextPage;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [open, setOpen] = useState(false);

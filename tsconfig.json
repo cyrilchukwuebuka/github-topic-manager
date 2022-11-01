@@ -10,6 +10,7 @@
     "jsx": "react",
     "moduleResolution": "node",
     "rootDirs": ["src", "storybook"],
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": false,
     "noImplicitThis": true,
@@ -30,7 +31,6 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts"
   ],
   "include": ["src", "./types", "index.d.ts", "test"]
 }

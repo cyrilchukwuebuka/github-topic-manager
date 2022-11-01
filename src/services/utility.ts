@@ -1,6 +1,6 @@
 import initOctokit from "./githubOctokit";
 import type { GraphQlQueryResponseData } from "@octokit/graphql";
-import OctokitGraphQLEndpoints from "src/api/graphqlApiEndpoints";
+import OctokitGraphQLEndpoints from "../api/graphqlApiEndpoints";
 
 type Repo = GraphQlQueryResponseData;
 type FuncArgs = (accessToken: string, repo: Repo, topics: string[]) => void;
@@ -12,8 +12,6 @@ const replaceTopicsInRepo = async (
 ) => {
   if (topics.length === 0) topics = [""];
   const octokit = initOctokit(accessToken);
-
-  console.log(repo.id, topics);
 
   await new OctokitGraphQLEndpoints(octokit).updateTopicsMutation(
     repo,

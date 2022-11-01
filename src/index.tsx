@@ -1,9 +1,9 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import React from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import App from "./App";
-import store from "./globalState/store";
+import { setupStore } from "./globalState/store";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
@@ -31,15 +31,15 @@ const theme = extendTheme({
   },
 });
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
-      <Provider store={store}>
-        <ChakraProvider theme={theme}>
-          <App />
-        </ChakraProvider>
-      </Provider>
-  </React.StrictMode>,
-  document.getElementById("root")
+    <Provider store={setupStore()}>
+      <ChakraProvider theme={theme}>
+        <App />
+      </ChakraProvider>
+    </Provider>
+  </React.StrictMode>
 );
 
 serviceWorkerRegistration.register();

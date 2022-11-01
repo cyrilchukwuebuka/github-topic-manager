@@ -14,38 +14,38 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  useMediaQuery,
+  useMediaQuery
 } from "@chakra-ui/react";
+import type { GraphQlQueryResponseData } from "@octokit/graphql";
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import Bounce from "react-reveal/Bounce";
+import Fade from "react-reveal/Fade";
 import { useParams } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "src/globalState/stateHooks";
+import { TOKEN } from "../../App";
 import ModalComponent from "../../components/Modal";
 import {
   fetchAsyncRepo,
   getLoader,
   getRepo,
-  removeFetchedRepo,
+  removeFetchedRepo
 } from "../../globalState/githubUser/githubUserSlice";
-import Fade from "react-reveal/Fade";
-import Bounce from "react-reveal/Bounce";
 import { updateRepoTopic } from "../../services/utility";
-import { TOKEN } from "../../App";
-import { AppDispatch } from "../../globalState/reducerTypes";
-import type { GraphQlQueryResponseData } from "@octokit/graphql";
 
 const RepoDetail = () => {
   const [isLargerThan653] = useMediaQuery("(min-width: 653px)");
   const bgColor = useColorModeValue("themeLight.bg", "themeDark.bgBody");
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const { repoID } = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [owner, _, repoName] = repoID?.match(
     /[a-z-_]+|[0-9]+/gi
   ) as RegExpMatchArray;
   const accessToken = localStorage.getItem(TOKEN) || "";
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const isLoaded = useSelector(getLoader);
+  const isLoaded = useAppSelector(getLoader);
   const [open, setOpen] = useState(false);
-  const repo: GraphQlQueryResponseData = useSelector(getRepo);
+  const repo: GraphQlQueryResponseData = useAppSelector(getRepo);
   const repoTopics = repo?.repositoryTopics?.edges;
 
   const onRemove = (topics?: string) => {

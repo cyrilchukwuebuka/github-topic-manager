@@ -3,7 +3,6 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './services/firebaseApp';
 import { addUser, deleteUser } from './globalState/githubUser/githubUserSlice';
-import { useDispatch } from 'react-redux';
 import { Container, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import { useMediaQuery } from '@chakra-ui/react'
 import './App.css';
@@ -12,11 +11,12 @@ import PageNotFound from './pages/PageNotFound';
 import RepoDetail from './pages/RepoDetail';
 import HowItWorks from './pages/HowItWorks';
 import Layout from './components/Layout';
+import { useAppDispatch } from './globalState/stateHooks';
 
 export const TOKEN = 'token';
 
 const App: FC<{}> = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const bgColor = useColorModeValue('themeLight.bg', 'themeDark.bgBody')
   const [isLargerThan310] = useMediaQuery('(min-width: 310px)')
   

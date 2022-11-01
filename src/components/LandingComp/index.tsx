@@ -5,18 +5,17 @@ import {
   Flex,
   Image,
   Link,
-  Text,
+  Text
 } from "@chakra-ui/react";
 import React, { FC } from "react";
 import Tilt from "react-parallax-tilt";
-import { useDispatch } from 'react-redux'
 import Bounce from "react-reveal/Bounce";
 import { Link as ReactLink } from "react-router-dom";
-import { AppDispatch } from 'src/globalState/reducerTypes'
-import { firebaseSignInWithPopup } from '../../services/firebaseApp'
+import { useAppDispatch } from "src/globalState/stateHooks";
+import { firebaseSignInWithPopup } from '../../services/firebaseApp';
 
 const LandingComp: FC<{}> = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   return (
     <Container
