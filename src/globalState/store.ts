@@ -1,10 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  configureStore,
+  PreloadedState,
+  combineReducers,
+} from "@reduxjs/toolkit";
 import githubUserReducer from "./githubUser/githubUserSlice";
+import { RootState } from "./reducerTypes";
 
-const store = configureStore({
-    reducer: {
-        githubUsers: githubUserReducer
-    }
-})
+export const rootReducer = combineReducers({
+  githubUsers: githubUserReducer,
+});
 
-export default store;
+export function setupStore(preloadedState?: PreloadedState<RootState>) {
+  return configureStore({
+    reducer: rootReducer,
+    preloadedState,
+  });
+}
+

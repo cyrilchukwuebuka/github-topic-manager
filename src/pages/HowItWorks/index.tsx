@@ -55,6 +55,7 @@ const HowItWorks: FC<{}> = () => {
           About
         </Text>
         <Text
+          id="about-message"
           mb="5%"
           maxW="90%"
           fontStyle="italic"
@@ -106,8 +107,9 @@ const HowItWorks: FC<{}> = () => {
             },
           }}
         >
-          {Data.map((value) => (
+          {Data.map((value, i) => (
             <Flex
+              key={i}
               w="100%"
               mb="10px"
               px="5%"

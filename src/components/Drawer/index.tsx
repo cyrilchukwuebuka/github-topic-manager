@@ -23,10 +23,9 @@ import { BsLinkedin, BsTwitter } from "react-icons/bs";
 import { FaInstagram } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
 import Tilt from "react-parallax-tilt";
-import { useDispatch } from "react-redux";
 import Fade from "react-reveal/Fade";
 import { Link as ReactLink } from "react-router-dom";
-import { AppDispatch } from "src/globalState/reducerTypes";
+import { useAppDispatch } from "src/globalState/stateHooks";
 import {
   firebaseSignInWithPopup,
   firebaseSignOut
@@ -44,7 +43,7 @@ const DrawerCompenent: FC<DrawerCompenentProps> = ({
   onClose,
   accessToken,
 }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const bgColor = useColorModeValue("themeLight.bg", "themeDark.bgBody");
   const logoColor = useColorModeValue("themeLight.logo", "themeDark.logo");
   const bgInstagram = useColorModeValue("red", "white");
