@@ -60,7 +60,7 @@ const ModalComponent: FC<ModalComponentProps> = ({
       const trending = await getTrendingRepositoriesTopics();
       setTrendingTopics(shuffle(trending));
     })();
-  }, []);
+  }, [title, description]);
 
   return (
     <Modal
