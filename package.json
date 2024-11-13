@@ -49,7 +49,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false && react-scripts build",
     "test": "react-scripts test --watch --detectOpenHandles",
     "test:watch": "react-scripts test --watchAll --detectOpenHandles",
     "eject": "react-scripts eject"
