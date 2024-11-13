@@ -14,7 +14,7 @@ import {
   PopoverTrigger,
   Spinner,
   Text,
-  useDisclosure
+  useDisclosure,
 } from "@chakra-ui/react";
 import type { GraphQlQueryResponseData } from "@octokit/graphql";
 import React, { FC, useEffect, useState } from "react";
@@ -24,9 +24,11 @@ import {
   fetchAsyncRepos,
   getLoader,
   getRepos,
-  getUserData
+  getUserData,
 } from "../../globalState/githubUser/githubUserSlice";
-import { updateRepoTopic } from "../../services/utility";
+import {
+  updateRepoTopic
+} from "../../services/utility";
 import ModalComponent from "../Modal";
 import RepoCard from "../RepoCard";
 

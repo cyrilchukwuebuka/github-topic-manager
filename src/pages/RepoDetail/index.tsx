@@ -14,7 +14,7 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-  useMediaQuery
+  useMediaQuery,
 } from "@chakra-ui/react";
 import type { GraphQlQueryResponseData } from "@octokit/graphql";
 import React, { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ import {
   fetchAsyncRepo,
   getLoader,
   getRepo,
-  removeFetchedRepo
+  removeFetchedRepo,
 } from "../../globalState/githubUser/githubUserSlice";
 import { updateRepoTopic } from "../../services/utility";
 
@@ -50,13 +50,13 @@ const RepoDetail = () => {
 
   const onRemove = (topics?: string) => {
     onClose();
-    updateRepoTopic(topics ?? '', "remove", accessToken, [repo]);
+    updateRepoTopic(topics ?? "", "remove", accessToken, [repo]);
     setOpen(!open);
   };
 
   const onAdd = (topics?: string) => {
     onClose();
-    updateRepoTopic(topics ?? '', "add", accessToken, [repo]);
+    updateRepoTopic(topics ?? "", "add", accessToken, [repo]);
     setOpen(!open);
   };
 
@@ -150,21 +150,27 @@ const RepoDetail = () => {
                       },
                     }}
                   >
-                    {repoTopics.map((RepoTopic: Record<string, any>, index: number) => (
-                      <Fade bottom>
-                        <Button
-                          key={index}
-                          marginEnd="10px"
-                          marginBottom="10px"
-                        >
-                          <Text
-                            fontSize={{ base: "11px", md: "13px", lg: "16px" }}
+                    {repoTopics.map(
+                      (RepoTopic: Record<string, any>, index: number) => (
+                        <Fade bottom>
+                          <Button
+                            key={index}
+                            marginEnd="10px"
+                            marginBottom="10px"
                           >
-                            {RepoTopic.node.topic.name}
-                          </Text>
-                        </Button>
-                      </Fade>
-                    ))}
+                            <Text
+                              fontSize={{
+                                base: "11px",
+                                md: "13px",
+                                lg: "16px",
+                              }}
+                            >
+                              {RepoTopic.node.topic.name}
+                            </Text>
+                          </Button>
+                        </Fade>
+                      )
+                    )}
                   </Flex>
                 ) : (
                   <Text
@@ -209,14 +215,19 @@ const RepoDetail = () => {
                 </Link>
               </Button>
             </Flex>
-            <ModalComponent
-              isOpen={isOpen}
-              onClose={onClose}
-              onRemove={onRemove}
-              onAdd={onAdd}
-            />
+            {isOpen && (
+              <ModalComponent
+                isOpen={isOpen}
+                onClose={onClose}
+                onRemove={onRemove}
+                onAdd={onAdd}
+                title={repo.name}
+                description={repo.description}
+                single
+              />
+            )}
             {/* <AlertModel open={open}/> */}
-            <Modal isOpen={open} onClose={() => console.log('Modal closed')}>
+            <Modal isOpen={open} onClose={() => console.log("Modal closed")}>
               <ModalOverlay />
               <ModalContent p={5}>
                 <ModalCloseButton onClick={() => setOpen(!open)} />
