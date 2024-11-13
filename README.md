@@ -22,6 +22,7 @@ Topics appear on the main page of a repository. Clicking on a topic name refers 
 *  [React Reveal](https://www.react-reveal.com/)
 *  [Chakra UI](https://chakra-ui.com/)  
 *  [Firebase Oauth](https://console.firebase.google.com/)
+*  [Open AI](https://platform.openai.com)
 *  [Netlify](https://www.netlify.com/)
 
 Here is the [live link](https://github-topic-manager.netlify.app/) to the project.  
